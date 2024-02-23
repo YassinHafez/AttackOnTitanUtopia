@@ -10,6 +10,7 @@ public abstract class Titan{
 	private int speed;
 	private int resourcesValue;
 	private int dangerLevel;
+	private boolean isAlive;
 	
 
 	public Titan(int baseHealth, int baseDamage,
