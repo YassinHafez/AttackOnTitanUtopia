@@ -9,9 +9,7 @@ public abstract class Titan{
 	private int distanceFromBase;
 	private int speed;
 	private int resourcesValue;
-	private int dangerLevel;
-	private boolean isAlive;
-	
+	private int dangerLevel;	
 
 	public Titan(int baseHealth, int baseDamage,
 			int heigthInMeters,int distanceFromBase,int speed,int resourcesValue,int dangerLevel) {
