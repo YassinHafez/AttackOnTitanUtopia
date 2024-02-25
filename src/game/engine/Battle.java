@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 
 public class Battle {
-    private final int[][] PHASES_APPROACHING_TITANS;
+    private static final int[][] PHASES_APPROACHING_TITANS;
     private final int WALL_BASE_HEALTH;
     private int numberOfTurns;
     private int resourcesGathered;
