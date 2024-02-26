@@ -7,6 +7,11 @@ public class Wall {
 	private int currentHealth;
 	private final int resourcesValue = -1;
 
+	public int getResourcesValue() {
+		return resourcesValue;
+	}
+
+
 	public Wall(int baseHealth) {
 		this.baseHealth = baseHealth;
 		currentHealth = baseHealth;

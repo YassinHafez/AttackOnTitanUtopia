@@ -9,6 +9,30 @@ public class WeaponRegistry {
     private final int minRange;
     private final int maxRange;
 
+    public int getCode() {
+        return code;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getMinRange() {
+        return minRange;
+    }
+
+    public int getMaxRange() {
+        return maxRange;
+    }
+
     public WeaponRegistry(int code, int price){
         this.code = code;
         this.price = price;

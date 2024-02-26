@@ -13,6 +13,18 @@ public abstract class Titan implements Comparable{
 	private final int dangerLevel;
 	
 
+	public int getBaseHealth() {
+		return baseHealth;
+	}
+
+	public int getDangerLevel() {
+		return dangerLevel;
+	}
+
+	public int getHeightInMeters() {
+		return heightInMeters;
+	}
+
 	public Titan(int baseHealth, int baseDamage,
 			int heightInMeters,int distanceFromBase, int speed,int resourcesValue,int dangerLevel) {
 		
