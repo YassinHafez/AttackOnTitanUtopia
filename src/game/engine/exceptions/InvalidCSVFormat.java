@@ -4,6 +4,14 @@ public class InvalidCSVFormat extends Exception{
     private static final String MSG = "Invalid input detected while reading csv file, input = \n";
     private String inputLine;
 
+    public String getInputLine() {
+        return inputLine;
+    }
+
+    public void setInputLine(String inputLine) {
+        this.inputLine = inputLine;
+    }
+
     public InvalidCSVFormat(String inputLine){
         super(MSG + inputLine);
         this.inputLine = inputLine;
