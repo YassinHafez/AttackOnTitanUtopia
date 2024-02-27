@@ -12,9 +12,11 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 
 
-//Comment to test git for omar
+
 public class Battle {
-    private static final int[][] PHASES_APPROACHING_TITANS;
+    private static final int[][] PHASES_APPROACHING_TITANS = {{1,1,1,2,1,3,4},
+                                                            {2,2,2,1,3,3,4},
+                                                            {4,4,4,4,4,4,4}};
     private final int WALL_BASE_HEALTH;
     private int numberOfTurns;
     private int resourcesGathered;
