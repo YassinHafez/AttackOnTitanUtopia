@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
+
+//Comment to test git for omar
 public class Battle {
     private static final int[][] PHASES_APPROACHING_TITANS;
     private final int WALL_BASE_HEALTH;
