@@ -2,7 +2,7 @@ package game.engine.titans;
 
 public class PureTitan extends Titan{
 
-	private final int TITAN_CODE=1;
+	public static final int TITAN_CODE=1;
 
 
 

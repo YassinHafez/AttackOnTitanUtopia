@@ -3,7 +3,7 @@ package game.engine.titans;
 public class AbnormalTitan extends Titan {
 
 
-	private final int TITAN_CODE=2;
+	public static final int TITAN_CODE=2;
 
 
 	public int getTITAN_CODE() {

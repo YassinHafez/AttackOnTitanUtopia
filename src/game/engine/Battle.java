@@ -30,6 +30,29 @@ public class Battle {
     private final PriorityQueue<Lane> lanes;
     private final ArrayList<Lane> originalLanes;
 
+
+    public ArrayList<Lane> getOriginalLanes() {
+        return originalLanes;
+    }
+
+
+    public PriorityQueue<Lane> getLanes() {
+        return lanes;
+    }
+
+
+    public WeaponFactory getWeaponFactory() {
+        return weaponFactory;
+    }
+
+    public HashMap<Integer, TitanRegistry> getTitansArchives() {
+        return titansArchives;
+    }
+
+    public ArrayList<Titan> getApproachingTitans() {
+        return approachingTitans;
+    }
+
     public int getNumberOfTurns() {
         return numberOfTurns;
     }
@@ -91,7 +114,7 @@ public class Battle {
         this.lanes = new PriorityQueue<>();
         this.originalLanes = new ArrayList<>();
         this.weaponFactory = new WeaponFactory();
-
+        initializeLanes(initialNumOfLanes);
 
     }
 

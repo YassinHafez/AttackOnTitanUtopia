@@ -4,7 +4,7 @@ public class VolleySpreadCannon extends Weapon {
 
 	private final int minRange;
 	private final int maxRange;
-	private final int WEAPON_CODE=3;
+	public static final int WEAPON_CODE=3;
 
 	public int getWEAPON_CODE() {
 		return WEAPON_CODE;

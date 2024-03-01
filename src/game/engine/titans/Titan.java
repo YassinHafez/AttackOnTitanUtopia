@@ -12,7 +12,14 @@ public abstract class Titan implements Comparable{
 	private final int resourcesValue;
 	private final int dangerLevel;
 	
+	public int getDistance() {
+		return distanceFromBase;
+	}
 
+	public void setDistance(int distance) {
+		 distanceFromBase = distance;
+	}
+	
 	public int getBaseHealth() {
 		return baseHealth;
 	}
@@ -43,12 +50,20 @@ public abstract class Titan implements Comparable{
 
 
 
-	public int compareTo(Object o) {
-		
-		Titan titan = (Titan)o;
+	public int compareTo(Titan o) {
 
-		if(this.distanceFromBase < titan.distanceFromBase) return -1;
-		if(this.distanceFromBase == titan.distanceFromBase) return 0;
+		if(this.distanceFromBase < o.distanceFromBase) return -1;
+		if(this.distanceFromBase == o.distanceFromBase) return 0;
+		return 1;
+
+	}
+
+	public int compareTo(Object o) {
+
+		Titan otherTitan = (Titan) o;
+		
+		if(this.distanceFromBase < otherTitan.distanceFromBase) return -1;
+		if(this.distanceFromBase == otherTitan.distanceFromBase) return 0;
 		return 1;
 
 	}
@@ -60,11 +75,14 @@ public abstract class Titan implements Comparable{
 
 
 	public void setCurrentHealth(int currentHealth) {
-		this.currentHealth = currentHealth;
+		if(currentHealth < 0 ) 
+			this.currentHealth = 0;
+		else
+			this.currentHealth = currentHealth;
 	}
 
 
-	public int getBaseDamage() {
+	public int getDamage() {
 		return baseDamage;
 	}
 
@@ -74,9 +92,6 @@ public abstract class Titan implements Comparable{
 	}
 
 
-	public void setDistanceFromBase(int distanceFromBase) {
-		this.distanceFromBase = distanceFromBase;
-	}
 
 
 	public int getSpeed() {

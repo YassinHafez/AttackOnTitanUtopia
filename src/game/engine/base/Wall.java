@@ -1,6 +1,7 @@
 package game.engine.base;
+import game.engine.interfaces.Attackee;
 
-public class Wall {
+public class Wall implements Attackee {
 
 
 	private final int baseHealth;
@@ -28,7 +29,10 @@ public class Wall {
 
 
 	public void setCurrentHealth(int currentHealth) {
-		this.currentHealth = currentHealth;
+		if(currentHealth < 0)
+			this.currentHealth = 0;
+		else
+			this.currentHealth = currentHealth;
 	}
 
 

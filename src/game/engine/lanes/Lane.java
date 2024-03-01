@@ -16,6 +16,15 @@ public class Lane implements Comparable{
 	private final ArrayList<Weapon> weapons;
 
 
+	public int getDangerLevel() {
+		return dangerLevel;
+	}
+
+	public void setDangerLevel(int dangerLevel) {
+		this.dangerLevel = dangerLevel;
+	}
+
+
 	public Lane(Wall laneWall) {
 
 		this.laneWall = laneWall;
@@ -41,11 +50,18 @@ public class Lane implements Comparable{
 	public int compareTo(Object o) {
 		Lane otherLane = (Lane) o;
 		
-		if (this.dangerLevel > otherLane.dangerLevel) return -1;
+		if (this.dangerLevel > otherLane.dangerLevel) return 1;
 		if (this.dangerLevel == otherLane.dangerLevel) return 0;
-		return 1;
+		return -1;
 		
 	}
+
+	public int compareTo(Lane o) {
+		if (this.dangerLevel > o.dangerLevel) return 1;
+		if (this.dangerLevel == o.dangerLevel) return 0;
+		return -1;
+	}
+	
 
 
 }
