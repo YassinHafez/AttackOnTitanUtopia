@@ -17,7 +17,9 @@ public abstract class Titan implements Comparable{
 	}
 
 	public void setDistance(int distance) {
-		 distanceFromBase = distance;
+		if (distance < 0) this.distanceFromBase = 0;
+		else this.distanceFromBase = distance;
+
 	}
 	
 	public int getBaseHealth() {
