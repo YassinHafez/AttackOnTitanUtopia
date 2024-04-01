@@ -17,7 +17,7 @@ public class Battle {
     private static final int[][] PHASES_APPROACHING_TITANS = {{1,1,1,2,1,3,4},
                                                             {2,2,2,1,3,3,4},
                                                             {4,4,4,4,4,4,4}};
-    private static int WALL_BASE_HEALTH;
+    private static final int WALL_BASE_HEALTH = 10000;
     private int numberOfTurns;
     private int resourcesGathered;
     private BattlePhase battlePhase;
@@ -102,7 +102,7 @@ public class Battle {
     }
 
     public Battle(int numberOfTurns, int score, int titanSpawnDistance, int initialNumOfLanes, int initialResourcesPerLane) throws IOException{
-        this.WALL_BASE_HEALTH = 10000;
+        
         this.battlePhase = BattlePhase.EARLY;
         this.numberOfTitansPerTurn = 1;
         this.numberOfTurns = numberOfTurns;
