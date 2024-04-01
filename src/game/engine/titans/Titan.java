@@ -90,13 +90,6 @@ public abstract class Titan implements Comparable, Attackee, Attacker, Mobil{
 	}
 
 
-	public int getDistanceFromBase() {
-		return distanceFromBase;
-	}
-
-
-
-
 	public int getSpeed() {
 		return speed;
 	}
