@@ -1,5 +1,7 @@
 package game.engine.titans;
 
+import game.engine.interfaces.*;
+
 public class AbnormalTitan extends Titan {
 
 
@@ -18,7 +20,24 @@ public class AbnormalTitan extends Titan {
 		super( baseHealth, baseDamage,
 				heigthInMeters, distanceFromBase, speed,resourcesValue, dangerLevel);
 
+				
 	}
+
+	//Overrides attacker default method
+	@Override
+	public int attack(Attackee target){
+
+		target.takeDamage(getDamage());
+        if(target.isDefeated()) return target.getResourcesValue();
+        
+		target.takeDamage(getDamage());
+		if(target.isDefeated()) return target.getResourcesValue();
+
+		return 0;
+
+
+	}
+	
 
 
 

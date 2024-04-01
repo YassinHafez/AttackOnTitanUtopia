@@ -17,6 +17,17 @@ public class ArmoredTitan extends Titan {
 
 	}
 
+	//Overrides attackee takeDamage method
+	@Override
+	public int takeDamage(int damage){
+
+		setCurrentHealth(getCurrentHealth() - damage/4);
+        
+        if(isDefeated()) return getResourcesValue();
+        else return 0;
+
+	}
+
 
 
 }

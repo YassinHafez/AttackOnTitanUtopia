@@ -18,6 +18,16 @@ public class ColossalTitan extends Titan {
 
 	}
 
+	//Overrides Mobil move method
+	@Override
+	public boolean move(){
+
+        setDistance(getDistance() - getSpeed());
+		setSpeed(getSpeed() + 1);
+        return hasReachedTarget();
+
+    }
+
 
 
 

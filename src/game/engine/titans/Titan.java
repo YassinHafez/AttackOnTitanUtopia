@@ -1,7 +1,8 @@
 package game.engine.titans;
 
+import game.engine.interfaces.*;
 
-public abstract class Titan implements Comparable{
+public abstract class Titan implements Comparable, Attackee, Attacker, Mobil{
 
 	private final int baseHealth;
 	private int currentHealth;
