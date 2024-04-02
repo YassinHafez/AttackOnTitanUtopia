@@ -146,7 +146,7 @@ public class Lane implements Comparable{
 		while(!titans.isEmpty()){
 			titansInLane.add(titans.remove());
 		}
-		
+
 		//All titans are now in arraylist
 
 		for (int i = 0; i < weapons.size(); i++) {
@@ -167,6 +167,18 @@ public class Lane implements Comparable{
 
 		return totalResourcesReceived;
 
+
+	}
+
+	public boolean isLaneLost(){
+
+		return laneWall.isDefeated();
+
+	}
+
+	public void updateLaneDangerLevel(){
+
+		setDangerLevel(titans.size());
 
 	}
 
