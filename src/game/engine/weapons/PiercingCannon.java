@@ -1,6 +1,7 @@
 package game.engine.weapons;
 
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 import game.engine.titans.Titan;
 
@@ -26,24 +27,28 @@ public class PiercingCannon extends Weapon {
 
 		int totalResourcesReceived = 0;
 		int titansInLane = laneTitans.size();
-		int titansAttacked = 0;
-
+		
 		if(titansInLane == 0) return 0;
 
-		for (int i = 0; i < titansInLane; i++) {
+		Stack<Titan> temp = new Stack<>();
+
+		//Remove from queue and push to stack 
+		//while 5 titans not attacked and queue not emptied
+
+		for(int i =0; i<5 && !laneTitans.isEmpty(); i++){
 
 			Titan frontTitan = laneTitans.remove();
+			totalResourcesReceived += frontTitan.takeDamage(getDamage());
 
-			//If 5 titans haven't been attacked, attack the front titan
-			if(titansAttacked < 5){
-				totalResourcesReceived += frontTitan.takeDamage(this.getDamage());
-				titansAttacked++;
-			}
-				if(!frontTitan.isDefeated())
-				laneTitans.add(frontTitan); //Adds titan to back of queue if alive
-		
-			
+			if(!frontTitan.isDefeated())
+			temp.push(frontTitan);
+
 		}
+
+		while(!temp.isEmpty()){
+			laneTitans.add(temp.pop());
+		}
+		
 		return totalResourcesReceived;
 	}
 

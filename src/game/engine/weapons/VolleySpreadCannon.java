@@ -1,6 +1,7 @@
 package game.engine.weapons;
 
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 import game.engine.titans.Titan;
 
@@ -33,21 +34,28 @@ public class VolleySpreadCannon extends Weapon {
 	int turnAttack(PriorityQueue<Titan> laneTitans) {
 
 		int totalResourcesReceived = 0;
-		int titansInLane = laneTitans.size();
 
+		if(laneTitans.size() == 0) return 0;
 
-		if(titansInLane == 0) return 0;
+		Stack<Titan> temp = new Stack<>();
 
-		for (int i = 0; i < titansInLane; i++) {
+		for (int i = 0; i < laneTitans.size(); i++) {
 
 			Titan frontTitan = laneTitans.remove();
-			if(frontTitan.getDistance() <= maxRange && frontTitan.getDistance() >= minRange) 
-				totalResourcesReceived += frontTitan.takeDamage(this.getDamage());
+			int distance = frontTitan.getDistance();
+
+			if(distance <= maxRange && distance >= minRange)
+			totalResourcesReceived += frontTitan.takeDamage(getDamage());
 
 			if(!frontTitan.isDefeated())
-			laneTitans.add(frontTitan);
+			temp.push(frontTitan);
 			
 		}
+
+		while(!temp.isEmpty()){
+			laneTitans.add(temp.pop());
+		}
+		
 		return totalResourcesReceived;
 	}
 

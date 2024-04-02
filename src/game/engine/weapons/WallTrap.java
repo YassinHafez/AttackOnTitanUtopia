@@ -27,7 +27,9 @@ public class WallTrap extends Weapon {
 		if(titansInLane == 0) return 0;
 
 		Titan frontTitan = laneTitans.peek();
-		if(frontTitan.hasReachedTarget()) totalResourcesReceived += frontTitan.takeDamage(this.getDamage());
+		
+		if(frontTitan.hasReachedTarget()) 
+		totalResourcesReceived += frontTitan.takeDamage(this.getDamage());
 
 		if(frontTitan.isDefeated()) laneTitans.remove();
 

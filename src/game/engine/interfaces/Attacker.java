@@ -2,14 +2,13 @@ package game.engine.interfaces;
 
 public interface Attacker {
 
-    int getDamage();
+    int getDamage(); 
 
     default int attack(Attackee target){
 
-        target.takeDamage(getDamage());
-
-        if(target.isDefeated()) return target.getResourcesValue();
-        else return 0;
+        return target.takeDamage(getDamage());
+        //Returns resources of target if killed
+        
 
     }
 }
