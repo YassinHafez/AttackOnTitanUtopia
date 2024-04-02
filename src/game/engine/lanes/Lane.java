@@ -184,21 +184,7 @@ public class Lane implements Comparable{
 
 
 
-	public static void main(String[] args) {
-		Lane testLane = new Lane(new Wall(100));
-
-		testLane.titans.add(new PureTitan(0, 0, 0, 10, 5, 0, 0));
-		testLane.titans.add(new PureTitan(0, 0, 0, 20, 5, 0, 0));
-		testLane.titans.add(new PureTitan(0, 0, 0, 30, 5, 0, 0));
-		testLane.titans.add(new PureTitan(0, 0, 0, 40, 5, 0, 0));
-
-
-		System.out.println(testLane.titans);
-
-		testLane.moveLaneTitans();
-
-		System.out.println(testLane.titans);
-	}
+	
 	
 
 
