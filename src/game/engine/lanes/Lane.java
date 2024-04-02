@@ -2,8 +2,11 @@ package game.engine.lanes;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
+import java.util.Stack;
+
 
 import game.engine.base.Wall;
+import game.engine.titans.PureTitan;
 import game.engine.titans.Titan;
 import game.engine.weapons.Weapon;
 
@@ -60,6 +63,129 @@ public class Lane implements Comparable{
 		if (this.dangerLevel > o.dangerLevel) return 1;
 		if (this.dangerLevel == o.dangerLevel) return 0;
 		return -1;
+	}
+
+
+	//Milestone 2 Methods:
+
+	public void addTitan(Titan titan){
+		titans.add(titan);
+	}
+
+	public void addWeapon(Weapon weapon){
+		weapons.add(weapon);
+	}
+
+	public void moveLaneTitansRecursion(){
+
+
+		if(titans.isEmpty()) return;
+
+		Titan frontTitan = titans.remove();
+		frontTitan.move();
+
+		moveLaneTitansRecursion();
+
+		titans.add(frontTitan);
+
+
+	}
+
+	public void moveLaneTitans(){
+
+		Stack<Titan> temp = new Stack<>();
+		int size = titans.size();
+
+		for (int i = 0; i < size; i++) {
+			
+			Titan currTitan = titans.remove();
+			currTitan.move();
+			temp.push(currTitan);
+
+		}
+
+		while(!temp.isEmpty()){
+			titans.add(temp.pop());
+		}
+
+
+
+	}
+
+
+	public int performLaneTitansAttacks(){
+
+		int totalResourcesReceived = 0;
+		Stack<Titan> temp = new Stack<>();
+		int size = titans.size();
+
+		for (int i = 0; i < size; i++) {
+			
+			Titan currTitan = titans.remove();
+
+			if(currTitan.getDistance() <= 0)
+			totalResourcesReceived += currTitan.attack(laneWall);
+
+			temp.push(currTitan);
+
+		}
+
+		while(!temp.isEmpty()){
+			titans.add(temp.pop());
+		}
+
+		return totalResourcesReceived;
+
+	}
+
+	public int performLaneWeaponsAttacks(){
+
+		ArrayList<Titan> titansInLane = new ArrayList<>();
+		int totalResourcesReceived = 0;
+
+		while(!titans.isEmpty()){
+			titansInLane.add(titans.remove());
+		}
+		
+		//All titans are now in arraylist
+
+		for (int i = 0; i < weapons.size(); i++) {
+			Weapon currWeapon = weapons.get(i);
+			for (int j = 0; j < titansInLane.size(); j++) {
+
+				totalResourcesReceived += currWeapon.attack(titansInLane.get(j));
+				
+			}
+		}
+
+		for (int i = 0; i < titansInLane.size(); i++) {
+			
+			Titan currTitan = titansInLane.get(i);
+			if(!currTitan.isDefeated()) titans.add(currTitan);
+
+		}
+
+		return totalResourcesReceived;
+
+
+	}
+
+
+
+	public static void main(String[] args) {
+		Lane testLane = new Lane(new Wall(100));
+
+		testLane.titans.add(new PureTitan(0, 0, 0, 10, 5, 0, 0));
+		testLane.titans.add(new PureTitan(0, 0, 0, 20, 5, 0, 0));
+		testLane.titans.add(new PureTitan(0, 0, 0, 30, 5, 0, 0));
+		testLane.titans.add(new PureTitan(0, 0, 0, 40, 5, 0, 0));
+
+
+		System.out.println(testLane.titans);
+
+		testLane.moveLaneTitans();
+
+		System.out.println(testLane.titans);
 	}
 	
 
