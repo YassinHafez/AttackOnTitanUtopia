@@ -24,9 +24,7 @@ public class DataLoader {
         while(line != null){
 
             array = line.split(",");
-            for (String string : array) {
-                System.out.println(string);
-            }
+           
             TitanRegistry myRegistry = new TitanRegistry(Integer.parseInt(array[0]), Integer.parseInt(array[1]), Integer.parseInt(array[2]), 
                             Integer.parseInt(array[3]), Integer.parseInt(array[4]), Integer.parseInt(array[5]), Integer.parseInt(array[6]));
             
@@ -85,16 +83,7 @@ public class DataLoader {
         
     } 
 
-    public static void main(String[] args) {
-        try{
-        HashMap<Integer, TitanRegistry> titanMap = readTitanRegistry();
-        System.out.println(titanMap);
 
-        }
-        catch(IOException e){
-            System.out.println("Error reading file");
-        }
-    }
 
 
 }

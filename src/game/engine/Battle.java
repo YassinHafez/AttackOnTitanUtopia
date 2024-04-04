@@ -5,6 +5,7 @@ import game.engine.weapons.Weapon;
 import game.engine.weapons.factory.*;
 import game.engine.dataloader.DataLoader;
 import game.engine.exceptions.InsufficientResourcesException;
+import game.engine.exceptions.InvalidCSVFormat;
 import game.engine.exceptions.InvalidLaneException;
 import game.engine.lanes.*;
 import game.engine.base.*;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
+import java.util.Scanner;
 import java.util.Stack;
 
 
@@ -225,6 +227,8 @@ public class Battle {
 
     private void addTitansToLane(){
 
+        if(approachingTitans.isEmpty()) refillApproachingTitans();
+
         //To get lane of least danger, find the last element in the Priority Queue
 
         Stack<Lane> temp = new Stack<>();
@@ -287,7 +291,7 @@ public class Battle {
 
     private void finalizeTurns(){
 
-        boolean doubledTitans = true;
+        
         numberOfTurns++;
         if(numberOfTurns < 15){        
             battlePhase = BattlePhase.EARLY;
@@ -301,6 +305,135 @@ public class Battle {
             numberOfTitansPerTurn *= 2;
 
     }
+
+    private void performTurn(){
+
+        playerTurn();
+        moveTitans();
+        performTitansAttacks();
+        performWeaponsAttacks();
+        addTitansToLane();
+        updateLanesDangerLevels();
+        finalizeTurns();
+        
+
+    }
+
+    private boolean isGameOver(){
+
+        boolean anyLaneAlive = false;
+
+        for (Lane lane : lanes) {
+            if(!lane.isLaneLost())
+                anyLaneAlive = true;
+        }
+
+        return !anyLaneAlive;
+
+    }
+
+    private void playerTurn(){
+
+        String answer;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Would you like to purchase a weapon? Y/N");
+        System.out.println("Current Resources: " + resourcesGathered);
+        
+        answer = sc.nextLine();
+        
+        if(answer.toLowerCase().charAt(0) == 'y'){
+            System.out.println("Entered");
+            boolean validLane = true;
+            boolean sufficientResources = true;
+            do{
+            
+
+            int weaponCode;
+            int laneNum;
+
+            
+
+            System.out.println("Enter Weapon Code (Type -1 to exit): ");
+            weaponCode = sc.nextInt();
+
+            if(weaponCode == -1) break;
+
+            System.out.println("Enter Lane Number (Type -1 to exit): ");
+            laneNum = sc.nextInt();
+
+            if(laneNum == -1) break;
+
+            ArrayList<Lane> lanesAsList = new ArrayList<>();
+            lanesAsList.addAll(lanes);
+
+            try {
+                purchaseWeapon(weaponCode, lanesAsList.get(laneNum));
+            } catch (InsufficientResourcesException e) {
+                sufficientResources = false;
+                System.out.println("Insufficient Resources");
+            } catch (InvalidLaneException e) {
+                validLane = false;
+                System.out.println("Invalid Lane");
+            }
+
+            }while (!validLane || !sufficientResources);
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+    }
+
+
+
+    public static void main(String[] args) {
+        
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Welcome to Attack on Titan: Utopia, an endless tower defense game.");
+        System.out.println("Enter the following game conditions: ");
+
+        System.out.print("Initial Turn Count: ");
+        int initialTurnCount = sc.nextInt();
+
+        System.out.println();
+        System.out.print("Titan Spawn Distance: ");
+        int titanSpawnDistance = sc.nextInt();
+
+        System.out.println();
+        System.out.print("Initial Number of Lanes: ");
+        int initialNumOfLanes = sc.nextInt();
+
+        System.out.println();
+        System.out.print("Initial Resources per Lane: ");
+        int initialResourcesPerLane = sc.nextInt();
+        
+
+
+
+        try {
+            Battle game = new Battle(initialTurnCount, 0, titanSpawnDistance, initialNumOfLanes, initialResourcesPerLane);
+            while(!game.isGameOver()){
+                game.performTurn();
+            }
+        
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+    }
+   
 
 
 }
