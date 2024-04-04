@@ -6,9 +6,9 @@ import java.util.Stack;
 
 
 import game.engine.base.Wall;
-import game.engine.titans.PureTitan;
 import game.engine.titans.Titan;
 import game.engine.weapons.Weapon;
+
 
 public class Lane implements Comparable{
 
@@ -147,6 +147,8 @@ public class Lane implements Comparable{
 			titansInLane.add(titans.remove());
 		}
 
+		
+
 		//All titans are now in arraylist
 
 		for (int i = 0; i < weapons.size(); i++) {
@@ -167,7 +169,6 @@ public class Lane implements Comparable{
 
 		return totalResourcesReceived;
 
-
 	}
 
 	public boolean isLaneLost(){
@@ -183,7 +184,7 @@ public class Lane implements Comparable{
 	}
 
 
-
+	
 	
 	
 
