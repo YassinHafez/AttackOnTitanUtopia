@@ -17,7 +17,7 @@ public class SniperCannon extends Weapon {
 	}
 
 	@Override
-	int turnAttack(PriorityQueue<Titan> laneTitans) {
+	public int turnAttack(PriorityQueue<Titan> laneTitans) {
 
 		int totalResourcesReceived = 0;
 		int titansInLane = laneTitans.size();

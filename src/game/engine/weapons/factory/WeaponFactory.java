@@ -16,7 +16,7 @@ public class WeaponFactory {
         this.weaponShop = game.engine.dataloader.DataLoader.readWeaponRegistry();
     }
 
-    FactoryResponse buyWeapon(int resources, int weaponCode) throws InsufficientResourcesException{
+    public FactoryResponse buyWeapon(int resources, int weaponCode) throws InsufficientResourcesException{
 
         Weapon weaponToBuy = null;
         WeaponRegistry registryOfWeaponToBuy = weaponShop.get(weaponCode);

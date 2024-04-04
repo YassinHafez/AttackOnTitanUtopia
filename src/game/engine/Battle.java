@@ -1,8 +1,11 @@
 package game.engine;
 
 import game.engine.titans.*;
+import game.engine.weapons.Weapon;
 import game.engine.weapons.factory.*;
 import game.engine.dataloader.DataLoader;
+import game.engine.exceptions.InsufficientResourcesException;
+import game.engine.exceptions.InvalidLaneException;
 import game.engine.lanes.*;
 import game.engine.base.*;
 
@@ -10,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 
 
@@ -125,4 +129,181 @@ public class Battle {
             originalLanes.add(newLane);
         }
     }
+
+
+    //*********************************************************
+    //MILESTONE 2
+
+    public void refillApproachingTitans(){
+
+        approachingTitans.clear();
+        int index = 0;
+
+        switch (battlePhase) {
+            case EARLY:
+                index = 0;
+                break;
+            case INTENSE:
+                index = 1;
+                break;
+            case GRUMBLING:
+                index = 2;
+                break;      
+            default:
+                break;
+        }
+
+        int[] currentPhaseCodes = PHASES_APPROACHING_TITANS[index];
+
+        for (int i = 0; i < currentPhaseCodes.length; i++) {
+            
+            int currentTitanCode = currentPhaseCodes[i];
+            TitanRegistry currentRegistry = titansArchives.get(currentTitanCode);
+
+            //Attributes of Titan To Add
+
+
+            int baseHealth = currentRegistry.getBaseHealth();
+            int baseDamage = currentRegistry.getBaseDamage();
+            int heightInMeters = currentRegistry.getHeightInMeters();
+            int speed = currentRegistry.getSpeed();
+            int resourcesValue = currentRegistry.getResourcesValue();
+            int dangerLevel = currentRegistry.getDangerLevel();
+
+            Titan titanToAdd;
+
+
+            switch (currentTitanCode) {
+                case 1:
+                    titanToAdd = new PureTitan(baseHealth, baseDamage, heightInMeters, titanSpawnDistance, speed, resourcesValue, dangerLevel);
+                    break;
+                case 2:
+                    titanToAdd = new PureTitan(baseHealth, baseDamage, heightInMeters, titanSpawnDistance, speed, resourcesValue, dangerLevel);
+                    break;
+                case 3:
+                    titanToAdd = new PureTitan(baseHealth, baseDamage, heightInMeters, titanSpawnDistance, speed, resourcesValue, dangerLevel);
+                    break;
+                case 4:
+                    titanToAdd = new PureTitan(baseHealth, baseDamage, heightInMeters, titanSpawnDistance, speed, resourcesValue, dangerLevel);
+                    break;
+            
+                default:
+                    titanToAdd = null;
+                    break;
+            }
+
+            approachingTitans.add(titanToAdd);
+
+
+
+        }
+
+    }
+
+    public void purchaseWeapon(int weaponCode, Lane lane) throws InsufficientResourcesException, InvalidLaneException{
+
+        try {
+            
+            if(lane.isLaneLost()) throw new InvalidLaneException();
+
+            FactoryResponse purchaseResponse = weaponFactory.buyWeapon(resourcesGathered, weaponCode);
+            resourcesGathered = purchaseResponse.getRemainingResources();
+            lane.addWeapon(purchaseResponse.getWeapon());
+            
+
+        } catch (InsufficientResourcesException e) {
+            
+        } catch (InvalidLaneException e){
+
+        }
+
+    }
+
+    public void passTurn(){
+
+    }
+
+    private void addTitansToLane(){
+
+        //To get lane of least danger, find the last element in the Priority Queue
+
+        Stack<Lane> temp = new Stack<>();
+        while(!lanes.isEmpty()) temp.add(lanes.remove());
+        Lane safestLane = temp.peek();
+        while(!temp.isEmpty()) lanes.add(temp.pop());
+
+        for(int i = 0; i < numberOfTitansPerTurn; i++){
+
+            safestLane.addTitan(approachingTitans.removeFirst());
+            if(approachingTitans.isEmpty()) refillApproachingTitans();
+
+        }
+
+    }
+
+    private void moveTitans(){
+
+        for (Lane lane : lanes) {         
+            for(Titan titan : lane.getTitans()){
+                titan.move();
+            }
+        }
+    }
+
+    private int performWeaponsAttacks(){
+
+        int totalResourcesGathered = 0;
+
+        for (Lane lane : lanes) {
+            for (Weapon weapon : lane.getWeapons()) {
+                totalResourcesGathered += weapon.turnAttack(lane.getTitans());       
+            }
+        }
+        return totalResourcesGathered;
+    }
+
+    private int performTitansAttacks(){
+
+        int totalResourcesGathered = 0;
+
+        for (Lane lane : lanes) {
+            for (Titan titan : lane.getTitans()) {
+
+                if(titan.getDistance() <= 0) 
+                totalResourcesGathered += titan.attack(lane.getLaneWall());
+                
+            }
+        }
+        return totalResourcesGathered;
+    }
+
+    private void updateLanesDangerLevels(){
+
+        for (Lane lane : lanes) {
+            lane.updateLaneDangerLevel();
+        }
+
+    }
+
+    private void finalizeTurns(){
+
+        boolean doubledTitans = true;
+        numberOfTurns++;
+        if(numberOfTurns < 15){        
+            battlePhase = BattlePhase.EARLY;
+        }else if(numberOfTurns < 30){
+            battlePhase = BattlePhase.INTENSE;
+        }else if(numberOfTurns >= 30){
+            battlePhase = BattlePhase.GRUMBLING;
+        }
+
+        if(numberOfTurns > 30 && numberOfTurns % 5 == 0)
+            numberOfTitansPerTurn *= 2;
+
+    }
+
+
 }
+
+
+

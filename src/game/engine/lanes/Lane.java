@@ -50,6 +50,8 @@ public class Lane implements Comparable{
 	}
 
 
+
+	//Lanes of highest danger are placed at the front of the queue
 	public int compareTo(Object o) {
 		Lane otherLane = (Lane) o;
 		
@@ -179,7 +181,12 @@ public class Lane implements Comparable{
 
 	public void updateLaneDangerLevel(){
 
-		setDangerLevel(titans.size());
+		int dangerSum = 0;
+		for (Titan titan : titans) {
+			dangerSum += titan.getDangerLevel();
+		}
+
+		setDangerLevel(dangerSum);
 
 	}
 
