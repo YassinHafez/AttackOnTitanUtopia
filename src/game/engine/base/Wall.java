@@ -41,14 +41,4 @@ public class Wall implements Attackee {
 
 }
 
-/*public Wall(int baseHealth) {
-		this.baseHealth=baseHealth;
-
-	}
-	public Wall(int baseHealth, int currentHealth) {
-
-		this.baseHealth=baseHealth;
-		this.currentHealth=currentHealth;
-
-	}*/
 
