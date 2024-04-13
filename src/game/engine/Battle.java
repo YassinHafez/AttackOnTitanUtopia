@@ -225,7 +225,7 @@ public class Battle {
 
     }
 
-    private void addTitansToLane(){
+    private void addTurnTitansToLane(){
 
         if(approachingTitans.isEmpty()) refillApproachingTitans();
 
@@ -312,7 +312,7 @@ public class Battle {
         moveTitans();
         performTitansAttacks();
         performWeaponsAttacks();
-        addTitansToLane();
+        addTurnTitansToLane();
         updateLanesDangerLevels();
         finalizeTurns();
         
