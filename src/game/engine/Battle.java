@@ -133,7 +133,7 @@ public class Battle {
     }
 
 
-    //*********************************************************
+    //********************************************************************************************
     //MILESTONE 2
 
     public void refillApproachingTitans(){
@@ -161,38 +161,7 @@ public class Battle {
             
             int currentTitanCode = currentPhaseCodes[i];
             TitanRegistry currentRegistry = titansArchives.get(currentTitanCode);
-
-            //Attributes of Titan To Add
-
-
-            int baseHealth = currentRegistry.getBaseHealth();
-            int baseDamage = currentRegistry.getBaseDamage();
-            int heightInMeters = currentRegistry.getHeightInMeters();
-            int speed = currentRegistry.getSpeed();
-            int resourcesValue = currentRegistry.getResourcesValue();
-            int dangerLevel = currentRegistry.getDangerLevel();
-
-            Titan titanToAdd;
-
-
-            switch (currentTitanCode) {
-                case 1:
-                    titanToAdd = new PureTitan(baseHealth, baseDamage, heightInMeters, titanSpawnDistance, speed, resourcesValue, dangerLevel);
-                    break;
-                case 2:
-                    titanToAdd = new PureTitan(baseHealth, baseDamage, heightInMeters, titanSpawnDistance, speed, resourcesValue, dangerLevel);
-                    break;
-                case 3:
-                    titanToAdd = new PureTitan(baseHealth, baseDamage, heightInMeters, titanSpawnDistance, speed, resourcesValue, dangerLevel);
-                    break;
-                case 4:
-                    titanToAdd = new PureTitan(baseHealth, baseDamage, heightInMeters, titanSpawnDistance, speed, resourcesValue, dangerLevel);
-                    break;
-            
-                default:
-                    titanToAdd = null;
-                    break;
-            }
+            Titan titanToAdd = currentRegistry.spawnTitan(titanSpawnDistance);
 
             approachingTitans.add(titanToAdd);
 
@@ -204,8 +173,7 @@ public class Battle {
 
     public void purchaseWeapon(int weaponCode, Lane lane) throws InsufficientResourcesException, InvalidLaneException{
 
-        try {
-            
+       
             if(lane.isLaneLost()) throw new InvalidLaneException();
 
             FactoryResponse purchaseResponse = weaponFactory.buyWeapon(resourcesGathered, weaponCode);
@@ -213,11 +181,7 @@ public class Battle {
             lane.addWeapon(purchaseResponse.getWeapon());
             
 
-        } catch (InsufficientResourcesException e) {
-            
-        } catch (InvalidLaneException e){
-
-        }
+        
 
     }
 
