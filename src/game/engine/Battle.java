@@ -186,7 +186,7 @@ public class Battle {
     }
 
     public void passTurn(){
-
+        moveTitans();
     }
 
     private void addTurnTitansToLane(){
@@ -363,45 +363,6 @@ public class Battle {
     }
 
 
-
-    public static void main(String[] args) {
-        
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Welcome to Attack on Titan: Utopia, an endless tower defense game.");
-        System.out.println("Enter the following game conditions: ");
-
-        System.out.print("Initial Turn Count: ");
-        int initialTurnCount = sc.nextInt();
-
-        System.out.println();
-        System.out.print("Titan Spawn Distance: ");
-        int titanSpawnDistance = sc.nextInt();
-
-        System.out.println();
-        System.out.print("Initial Number of Lanes: ");
-        int initialNumOfLanes = sc.nextInt();
-
-        System.out.println();
-        System.out.print("Initial Resources per Lane: ");
-        int initialResourcesPerLane = sc.nextInt();
-        
-
-
-
-        try {
-            Battle game = new Battle(initialTurnCount, 0, titanSpawnDistance, initialNumOfLanes, initialResourcesPerLane);
-            while(!game.isGameOver()){
-                game.performTurn();
-            }
-        
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-
-    }
-   
 
 
 }
