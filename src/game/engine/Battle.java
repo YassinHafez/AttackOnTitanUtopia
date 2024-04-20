@@ -247,9 +247,13 @@ public class Battle {
 
     private void updateLanesDangerLevels(){
 
-        for (Lane lane : lanes) {
-            lane.updateLaneDangerLevel();
+        Stack<Lane> temp = new Stack<>();
+        while(!lanes.isEmpty()){
+            Lane currentLane = lanes.remove();
+            currentLane.updateLaneDangerLevel();
+            temp.add(currentLane);
         }
+        while(!temp.isEmpty()) lanes.add(temp.pop());
 
     }
 
