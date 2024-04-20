@@ -287,7 +287,7 @@ public class Battle {
 
     }
 
-    private boolean isGameOver(){
+    public boolean isGameOver(){
 
         boolean anyLaneAlive = false;
 

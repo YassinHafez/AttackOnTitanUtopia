@@ -39,7 +39,7 @@ public class VolleySpreadCannon extends Weapon {
 
 		Stack<Titan> temp = new Stack<>();
 
-		for (int i = 0; i < laneTitans.size(); i++) {
+		while(!laneTitans.isEmpty()){
 
 			Titan frontTitan = laneTitans.remove();
 			int distance = frontTitan.getDistance();
