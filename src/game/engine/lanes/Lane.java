@@ -141,36 +141,12 @@ public class Lane implements Comparable{
 	}
 
 	public int performLaneWeaponsAttacks(){
-
-		ArrayList<Titan> titansInLane = new ArrayList<>();
-		int totalResourcesReceived = 0;
-
-		while(!titans.isEmpty()){
-			titansInLane.add(titans.remove());
+		int totalResourcesGathered =0;
+		//turn attack attacks all titans in a lane\
+		for (Weapon weapon : weapons) {
+			totalResourcesGathered += weapon.turnAttack(titans);
 		}
-
-		
-
-		//All titans are now in arraylist
-
-		for (int i = 0; i < weapons.size(); i++) {
-			Weapon currWeapon = weapons.get(i);
-			for (int j = 0; j < titansInLane.size(); j++) {
-
-				totalResourcesReceived += currWeapon.attack(titansInLane.get(j));
-				
-			}
-		}
-
-		for (int i = 0; i < titansInLane.size(); i++) {
-			
-			Titan currTitan = titansInLane.get(i);
-			if(!currTitan.isDefeated()) titans.add(currTitan);
-
-		}
-
-		return totalResourcesReceived;
-
+		return totalResourcesGathered;
 	}
 
 	public boolean isLaneLost(){
@@ -191,7 +167,13 @@ public class Lane implements Comparable{
 	}
 
 
-	
+	public String toString(){
+		return this.dangerLevel + "";
+	}
+
+	public static void main(String[] args) {
+		Lane lane1 = new Lane(new Wall(100));
+	}
 	
 	
 

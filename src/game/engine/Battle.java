@@ -174,38 +174,35 @@ public class Battle {
     public void purchaseWeapon(int weaponCode, Lane lane) throws InsufficientResourcesException, InvalidLaneException{
 
        
-            if(lane.isLaneLost()) throw new InvalidLaneException();
+            if(lane.isLaneLost() || !lanes.contains(lane)) throw new InvalidLaneException();
 
             FactoryResponse purchaseResponse = weaponFactory.buyWeapon(resourcesGathered, weaponCode);
             resourcesGathered = purchaseResponse.getRemainingResources();
             lane.addWeapon(purchaseResponse.getWeapon());
             
-
-        
+            performTurn();
 
     }
 
     public void passTurn(){
-        moveTitans();
+        performTurn();
     }
 
     private void addTurnTitansToLane(){
 
         if(approachingTitans.isEmpty()) refillApproachingTitans();
 
-        //To get lane of least danger, find the last element in the Priority Queue
-
-        Stack<Lane> temp = new Stack<>();
-        while(!lanes.isEmpty()) temp.add(lanes.remove());
-        Lane safestLane = temp.peek();
-        while(!temp.isEmpty()) lanes.add(temp.pop());
+        Lane safestLane = lanes.remove();
 
         for(int i = 0; i < numberOfTitansPerTurn; i++){
 
+            
             safestLane.addTitan(approachingTitans.removeFirst());
+           
             if(approachingTitans.isEmpty()) refillApproachingTitans();
 
         }
+        lanes.add(safestLane);
 
     }
 
@@ -219,29 +216,45 @@ public class Battle {
     }
 
     private int performWeaponsAttacks(){
+        int resources =0;
 
-        int totalResourcesGathered = 0;
-
-        for (Lane lane : lanes) {
-            for (Weapon weapon : lane.getWeapons()) {
-                totalResourcesGathered += weapon.turnAttack(lane.getTitans());       
-            }
+        Stack<Lane> laneStack = new Stack<>();
+        while(!lanes.isEmpty()){
+            Lane currentLane = lanes.remove();
+            resources += currentLane.performLaneWeaponsAttacks();
+            laneStack.push(currentLane);
         }
-        return totalResourcesGathered;
+
+        while(!laneStack.isEmpty()) lanes.add(laneStack.pop());
+
+        resourcesGathered += resources;
+        score += resources;
+        return resources;
     }
 
     private int performTitansAttacks(){
 
         int totalResourcesGathered = 0;
 
-        for (Lane lane : lanes) {
-            for (Titan titan : lane.getTitans()) {
+
+        Stack<Lane> stackOfLanes = new Stack<>();
+        while(!lanes.isEmpty()) stackOfLanes.push(lanes.remove());
+
+        while(!stackOfLanes.isEmpty()){
+
+            Lane currentLane = stackOfLanes.pop();
+            for (Titan titan : currentLane.getTitans()) {
 
                 if(titan.getDistance() <= 0) 
-                totalResourcesGathered += titan.attack(lane.getLaneWall());
+                totalResourcesGathered += titan.attack(currentLane.getLaneWall());
                 
             }
+
+            if(!currentLane.isLaneLost()) lanes.add(currentLane);
+
+
         }
+
         return totalResourcesGathered;
     }
 
@@ -273,13 +286,13 @@ public class Battle {
             numberOfTitansPerTurn *= 2;
 
     }
+    
 
     private void performTurn(){
 
-        playerTurn();
         moveTitans();
-        performTitansAttacks();
         performWeaponsAttacks();
+        performTitansAttacks();
         addTurnTitansToLane();
         updateLanesDangerLevels();
         finalizeTurns();
@@ -297,68 +310,6 @@ public class Battle {
         }
 
         return !anyLaneAlive;
-
-    }
-
-    private void playerTurn(){
-
-        String answer;
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Would you like to purchase a weapon? Y/N");
-        System.out.println("Current Resources: " + resourcesGathered);
-        
-        answer = sc.nextLine();
-        
-        if(answer.toLowerCase().charAt(0) == 'y'){
-            System.out.println("Entered");
-            boolean validLane = true;
-            boolean sufficientResources = true;
-            do{
-            
-
-            int weaponCode;
-            int laneNum;
-
-            
-
-            System.out.println("Enter Weapon Code (Type -1 to exit): ");
-            weaponCode = sc.nextInt();
-
-            if(weaponCode == -1) break;
-
-            System.out.println("Enter Lane Number (Type -1 to exit): ");
-            laneNum = sc.nextInt();
-
-            if(laneNum == -1) break;
-
-            ArrayList<Lane> lanesAsList = new ArrayList<>();
-            lanesAsList.addAll(lanes);
-
-            try {
-                purchaseWeapon(weaponCode, lanesAsList.get(laneNum));
-            } catch (InsufficientResourcesException e) {
-                sufficientResources = false;
-                System.out.println("Insufficient Resources");
-            } catch (InvalidLaneException e) {
-                validLane = false;
-                System.out.println("Invalid Lane");
-            }
-
-            }while (!validLane || !sufficientResources);
-
-
-
-
-
-
-
-
-
-
-        }
-
-
 
     }
 
