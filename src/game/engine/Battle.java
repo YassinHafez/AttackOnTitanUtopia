@@ -197,7 +197,7 @@ public class Battle {
         for(int i = 0; i < numberOfTitansPerTurn; i++){
 
             
-            safestLane.addTitan(approachingTitans.removeFirst());
+            safestLane.addTitan(approachingTitans.remove(0));
            
             if(approachingTitans.isEmpty()) refillApproachingTitans();
 

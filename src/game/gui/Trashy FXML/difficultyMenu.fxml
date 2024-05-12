@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="difficultyController">
+   <children>
+      <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/background.jpeg" />
+         </image>
+      </ImageView>
+      <Label fx:id="mainTitle" alignment="CENTER" layoutX="-568.0" layoutY="373.0" prefHeight="176.0" prefWidth="1536.0" text="Attack On Titan" textAlignment="CENTER">
+         <font>
+            <Font size="120.0" />
+         </font>
+      </Label>
+      <Button fx:id="easy" layoutX="318.0" layoutY="100.0" mnemonicParsing="false" onAction="#startEasy" prefHeight="124.0" prefWidth="338.0" text="Easy">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="hard" layoutX="318.0" layoutY="300.0" mnemonicParsing="false" onAction="#startHard" prefHeight="124.0" prefWidth="338.0" text="Hard">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="back" layoutX="602.0" layoutY="399.0" mnemonicParsing="false" onAction="#back" prefHeight="124.0" prefWidth="338.0" text="Back">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

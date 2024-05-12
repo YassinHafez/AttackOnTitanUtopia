@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainController">
+   <children>
+      <MediaView layoutX="960.0" layoutY="540.0" />
+      <Label fx:id="mainTitle" alignment="CENTER" layoutX="-568.0" layoutY="373.0" prefHeight="176.0" prefWidth="1536.0" text="Attack On Titan" textAlignment="CENTER">
+         <font>
+            <Font size="120.0" />
+         </font>
+      </Label>
+      <Button fx:id="newGame" layoutX="602.0" layoutY="105.0" mnemonicParsing="false" onAction="#play" prefHeight="124.0" prefWidth="338.0" text="New Game">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="options" layoutX="602.0" layoutY="232.0" mnemonicParsing="false" onAction="#options" prefHeight="124.0" prefWidth="338.0" text="Options">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="quit" layoutX="602.0" layoutY="399.0" mnemonicParsing="false" onAction="#quit" prefHeight="124.0" prefWidth="338.0" text="Quit">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
