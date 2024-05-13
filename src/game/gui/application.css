@@ -14,17 +14,27 @@
     -fx-text-fill:#ffffff;
     -fx-font-size: 50px;
     -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0), 10, 0, 0, 0 );
-
+    
 }
 
 #newGame:hover, #quit:hover, #options:hover, #back:hover, 
-#muteMusic:hover, #easy:hover, #hard:hover, #exit:hover{
+#muteMusic:hover, #easy:hover, #hard:hover, #exit:hover, #menuButton:hover{
 
     -fx-effect: dropshadow(three-pass-box, rgb(229, 36, 36), 10, 0.6, 0, 0);
 
 }
 
-#score, #resources, #round, #phase{
+#menuButton{
+
+    -fx-background-color: transparent;
+    -fx-font-family: "Oswald";
+    -fx-text-fill:#ffffff;
+    -fx-font-size: 20;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0), 10, 0, 0, 0 );
+
+}
+
+#score, #resources, #round, #phase, #gameOver{
     -fx-background-color: transparent;
     -fx-font-family: "Oswald";
     -fx-text-fill:#ffffff;
@@ -32,6 +42,39 @@
     -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0), 10, 0, 0, 0 );
 }
 
+#assem{
+
+    -fx-background-color: transparent;
+    -fx-font-family: "Oswald";
+    -fx-font-size: 90px;
+    -fx-text-fill: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
+    -fx-background-color: linear-gradient(to left, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
+
+
+
+}
+
+#rect{
+    -fx-background-color: #ffffff
+}
+
+#laneButton{
+    -fx-background-color: #0000ff
+}
+
+#passTurn, #purchaseWeapon {
+
+    -fx-background-color: transparent;
+    -fx-font-family: "Oswald";
+    -fx-text-fill:#ffffff;
+    -fx-font-size: 40px;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0), 10, 0, 0, 0 );    
+
+}
+
+#passTurn:hover, #purchaseWeapon:hover{
+    -fx-effect: dropshadow(three-pass-box, rgb(229, 36, 36), 10, 0.6, 0, 0);
+}
 
 
 

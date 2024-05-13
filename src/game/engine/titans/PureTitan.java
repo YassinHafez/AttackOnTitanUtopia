@@ -16,7 +16,6 @@ public class PureTitan extends Titan{
 			int heigthInMeters,int distanceFromBase,int speed,int resourcesValue,int dangerLevel) {
 
 
-
 		super( baseHealth, baseDamage,
 				heigthInMeters, distanceFromBase, speed,resourcesValue, dangerLevel);
 

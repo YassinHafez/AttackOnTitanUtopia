@@ -190,8 +190,10 @@ public class Battle {
 
     private void addTurnTitansToLane(){
 
+        if(lanes.isEmpty()) return;
         if(approachingTitans.isEmpty()) refillApproachingTitans();
 
+        
         Lane safestLane = lanes.remove();
 
         for(int i = 0; i < numberOfTitansPerTurn; i++){

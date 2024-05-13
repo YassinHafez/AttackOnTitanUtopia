@@ -12,7 +12,7 @@ public abstract class Titan implements Comparable, Attackee, Attacker, Mobil{
 	private int speed;
 	private final int resourcesValue;
 	private final int dangerLevel;
-	
+		
 	public int getDistance() {
 		return distanceFromBase;
 	}
@@ -34,6 +34,7 @@ public abstract class Titan implements Comparable, Attackee, Attacker, Mobil{
 	public int getHeightInMeters() {
 		return heightInMeters;
 	}
+
 
 	public Titan(int baseHealth, int baseDamage,
 			int heightInMeters,int distanceFromBase, int speed,int resourcesValue,int dangerLevel) {

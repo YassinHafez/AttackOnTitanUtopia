@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.*;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -16,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -37,6 +39,7 @@ public class Main extends Application{
     public static ArrayList<Button> allButtons = new ArrayList<>();
     public static MediaView video;
     public static boolean isMuted = false;
+    public static String keyPresses = "";
 
     public static void main(String[] args) {
         launch(args);
@@ -277,9 +280,46 @@ public class Main extends Application{
         });
 
 
+        Label assem = new Label("ASSEM");
+        assem.setPrefHeight(400);
+        assem.setPrefWidth(400);
+        assem.setLayoutX(200);
+        assem.setLayoutY(200);
+        assem.setId("assem");
+        assem.setVisible(false);
+        mainMenuRoot.getChildren().add(assem);
 
+        MediaPlayer assemMediaPlayer = new MediaPlayer(new Media(getClass().getResource("assets/Assem.mp4").toString()));
+        MediaView assemMediaView = new MediaView();
+        assemMediaView.setFitWidth(assemMediaView.getFitWidth()*0.1);
+        assemMediaView.setFitHeight(assemMediaView.getFitHeight()*0.1);
+        assemMediaView.setLayoutX(300);
+        assemMediaView.setLayoutY(0);
+        assemMediaView.setMediaPlayer(assemMediaPlayer);
+        assemMediaPlayer.setVolume(1000);
+        assemMediaView.setVisible(false);
+        
+        mainMenuRoot.getChildren().add(assemMediaView);
 
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
+            @Override
+            public void handle(KeyEvent event) {
+                keyPresses = keyPresses + event.getText();
+                if(keyPresses.length() >= 5){
+                    if(keyPresses.substring(keyPresses.length() - 5, keyPresses.length()).equals("assem")){
+                        assemMediaView.setVisible(true);
+                        assemMediaPlayer.play();
+                    }
+                }
+                
+            }
+            
+        });
+
+        
+
+  
 
 
 
