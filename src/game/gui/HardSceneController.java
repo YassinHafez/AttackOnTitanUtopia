@@ -29,7 +29,7 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.paint.*;
 
 
-public class EasySceneController {
+public class HardSceneController {
     
 
     public static Group root = new Group();
@@ -49,17 +49,19 @@ public class EasySceneController {
     public static Label resources;
     public static boolean purchaseOpened = false;
     public static int weaponToBuyCode = 0;
-    public static Button[] laneRects = new Button[3];
-    public static Lane[] lanes = new Lane[3];
+    public static Button[] laneRects = new Button[5];
+    public static Lane[] lanes = new Lane[5];
     public static HashMap<Titan, TitanIcon> titanImages = new HashMap<>();
     public static Rectangle dim;
     public static ImageView[] laneLost0 = new ImageView[6];
     public static ImageView[] laneLost1 = new ImageView[6];
     public static ImageView[] laneLost2 = new ImageView[6];
+    public static ImageView[] laneLost3 = new ImageView[6];
+    public static ImageView[] laneLost4 = new ImageView[6];
 
-    public void startEasy() throws IOException{
+    public void startHard() throws IOException{
 
-        battle = new Battle(0, 0, 100, 3, 250);
+        battle = new Battle(0, 0, 100, 5, 125);
         
         wallTrap.setFitHeight(100);
         wallTrap.setFitHeight(100);
@@ -74,85 +76,106 @@ public class EasySceneController {
             lanes[counter] = lane;
             counter++;
         }
+
+        Rectangle greenBackground = new Rectangle(960,540);
+        greenBackground.setFill(Color.rgb(00, 255, 0));
+        root.getChildren().add(greenBackground);
+
         //960 x 540
         //16:9
         
-        for(int i = 0; i < 10; i++){
-            for (int j = 0; j < 16; j++) {
+        for(int i = 0; i < 16; i++){
+            for (int j = 0; j < 24; j++) {
                 
                 ImageView image = new ImageView();
                 image.setImage(new Image(getClass().getResource("assets/Images/Tiles/1.png").toString()));
-                image.setFitWidth(960/16);
-                image.setFitHeight(540/10);
-                image.setLayoutX(j * 960/16); 
-                image.setLayoutY(i * 540/10); 
+                image.setFitWidth(960/24);
+                image.setFitHeight(540/16);
+                image.setLayoutX(j * 960/24); 
+                image.setLayoutY(i * 540/16); 
                 root.getChildren().add(image);     
 
             }
         }
 
-        for(int i = 0; i < 16; i++){
+        for(int i = 0; i < 24; i++){
             ImageView topImage = new ImageView(getClass().getResource("assets/Images/Tiles/3.png").toString());
-            topImage.setFitWidth(960/16);
-            topImage.setFitHeight(540/10); 
+            topImage.setFitWidth(960/24);
+            topImage.setFitHeight(540/16); 
             topImage.setLayoutY(0);
-            topImage.setLayoutX(i * 960/16);
+            topImage.setLayoutX(i * 960/24);
             root.getChildren().add(topImage);
             
             ImageView bottomImage = new ImageView(getClass().getResource("assets/Images/Tiles/3.png").toString());
-            bottomImage.setFitWidth(960/16);
-            bottomImage.setFitHeight(540/10); 
-            bottomImage.setLayoutY(540 - 540/10);
-            bottomImage.setLayoutX(i * 960/16);
+            bottomImage.setFitWidth(960/24);
+            bottomImage.setFitHeight(540/16); 
+            bottomImage.setLayoutY(540 - 540/16);
+            bottomImage.setLayoutX(i * 960/24);
             bottomImage.setRotate(180);
             root.getChildren().add(bottomImage);
 
         }
 
-        for(int i = 0; i < 16; i++){
+        for(int i = 0; i < 24; i++){
 
-            ImageView sandTop = new ImageView(getClass().getResource("assets/Images/Tiles/4.png").toString());
-            ImageView sandBottom = new ImageView(getClass().getResource("assets/Images/Tiles/4.png").toString());
-
-            sandTop.setFitWidth(960/16);
-            sandTop.setFitHeight(540/10); 
-            sandTop.setLayoutY(3 * 540/10);
-            sandTop.setLayoutX(i * 960/16);
-            root.getChildren().add(sandTop);
+            
+            ImageView sand0 = new ImageView(getClass().getResource("assets/Images/Tiles/4.png").toString());
+            ImageView sand1 = new ImageView(getClass().getResource("assets/Images/Tiles/4.png").toString());
+            ImageView sand2 = new ImageView(getClass().getResource("assets/Images/Tiles/4.png").toString());
+            ImageView sand3 = new ImageView(getClass().getResource("assets/Images/Tiles/4.png").toString());
             
 
-            sandBottom.setFitWidth(960/16);
-            sandBottom.setFitHeight(540/10); 
-            sandBottom.setLayoutY(6 * 540/10);
-            sandBottom.setLayoutX(i * 960/16);
-            root.getChildren().add(sandBottom);
+            sand0.setFitWidth(960/24);
+            sand0.setFitHeight(540/16); 
+            sand0.setLayoutY(3 * 540/16);
+            sand0.setLayoutX(i * 960/24);
+            root.getChildren().add(sand0);
+            
+
+            sand1.setFitWidth(960/24);
+            sand1.setFitHeight(540/16); 
+            sand1.setLayoutY(6 * 540/16);
+            sand1.setLayoutX(i * 960/24);
+            root.getChildren().add(sand1);
+
+            sand2.setFitWidth(960/24);
+            sand2.setFitHeight(540/16); 
+            sand2.setLayoutY(9 * 540/16);
+            sand2.setLayoutX(i * 960/24);
+            root.getChildren().add(sand2);
+
+            sand3.setFitWidth(960/24);
+            sand3.setFitHeight(540/16); 
+            sand3.setLayoutY(12 * 540/16);
+            sand3.setLayoutX(i * 960/24);
+            root.getChildren().add(sand3);
 
         }
 
-        for (int i = 0; i < 9; i++) {
-            if(i!=0 && i!=3 && i!=6 && i!=9){
+        for (int i = 0; i < 15; i++) {
+            if(i!=0 && i!=3 && i!=6 && i!=9 && i!=12 && i!=15){
 
                 ImageView tower = new ImageView(getClass().getResource("assets/Images/Tower/0.png").toString());
-                tower.setFitWidth(960/16);
-                tower.setFitHeight(540/10); 
-                tower.setLayoutY(i * 540/10);
+                tower.setFitWidth(960/24);
+                tower.setFitHeight(540/16); 
+                tower.setLayoutY(i * 540/16);
                 tower.setLayoutX(0);
                 root.getChildren().add(tower);
 
             }
         }
 
-        for (int i = 0; i < 9; i++) {
-            if(i!=0 && i!=3 && i!=6 && i!=9){
+        for (int i = 0; i < 15; i++) {
+            if(i!=0 && i!=3 && i!=6 && i!=9 && i!= 12 && i != 15){
 
                 ImageView wall = new ImageView(getClass().getResource("assets/Images/Wall/0.png").toString());
                 
                 
-                wall.setFitWidth(960/10);
-                wall.setFitHeight(540/8); 
+                wall.setFitWidth(960/15);
+                wall.setFitHeight(2*540/16); 
                 wall.setRotate(-90);
-                wall.setLayoutY(i * 540/10 - 10);
-                wall.setLayoutX(4 * 960/16 - 30);
+                wall.setLayoutY(i * 540/16 -12);
+                wall.setLayoutX(4 * 960/24 - 30);
                 root.getChildren().add(wall);
 
             }
@@ -280,37 +303,53 @@ public class EasySceneController {
        
         laneRects[0] = new Button();
         laneRects[0].setId("laneButton");
-        laneRects[0].setPrefWidth(3*960/16);
-        laneRects[0].setPrefHeight(2*540/10);
-        laneRects[0].setLayoutX(960/16 - 5);
-        laneRects[0].setLayoutY(540/10);
+        laneRects[0].setPrefWidth(3*960/24);
+        laneRects[0].setPrefHeight(2*540/16);
+        laneRects[0].setLayoutX(960/24);
+        laneRects[0].setLayoutY(540/16);
         laneRects[0].setVisible(false);
-       // laneRects[0].setBackground(Color.BLUE);
         laneRects[0].setOpacity(0.5);
         root.getChildren().add(laneRects[0]);
 
         laneRects[1] = new Button();
         laneRects[1].setId("laneButton");
-        laneRects[1].setPrefWidth(3*960/16);
-        laneRects[1].setPrefHeight(2*540/10);
-        laneRects[1].setLayoutX(960/16 - 5);
-        laneRects[1].setLayoutY(540/10*4);
+        laneRects[1].setPrefWidth(3*960/24);
+        laneRects[1].setPrefHeight(2*540/16);
+        laneRects[1].setLayoutX(960/24);
+        laneRects[1].setLayoutY(4*540/16);
         laneRects[1].setVisible(false);
-        //laneRects[1].setFill(Color.BLUE);
         laneRects[1].setOpacity(0.5);
         root.getChildren().add(laneRects[1]);
 
         laneRects[2] = new Button();
         laneRects[2].setId("laneButton");
-        laneRects[2].setPrefWidth(3*960/16);
-        laneRects[2].setPrefHeight(2*540/10);
-        laneRects[2].setLayoutX(960/16 - 5);
-        laneRects[2].setLayoutY(540/10*7);
+        laneRects[2].setPrefWidth(3*960/24);
+        laneRects[2].setPrefHeight(2*540/16);
+        laneRects[2].setLayoutX(960/24);
+        laneRects[2].setLayoutY(7*540/16);
         laneRects[2].setVisible(false);
-       // laneRects[2].setFill(Color.BLUE);
         laneRects[2].setOpacity(0.5);
         root.getChildren().add(laneRects[2]);
 
+        laneRects[3] = new Button();
+        laneRects[3].setId("laneButton");
+        laneRects[3].setPrefWidth(3*960/24);
+        laneRects[3].setPrefHeight(2*540/16);
+        laneRects[3].setLayoutX(960/24);
+        laneRects[3].setLayoutY(10*540/16);
+        laneRects[3].setVisible(false);
+        laneRects[3].setOpacity(0.5);
+        root.getChildren().add(laneRects[3]);
+
+        laneRects[4] = new Button();
+        laneRects[4].setId("laneButton");
+        laneRects[4].setPrefWidth(3*960/24);
+        laneRects[4].setPrefHeight(2*540/16);
+        laneRects[4].setLayoutX(960/24);
+        laneRects[4].setLayoutY(13*540/16);
+        laneRects[4].setVisible(false);
+        laneRects[4].setOpacity(0.5);
+        root.getChildren().add(laneRects[4]);
 
         //root.getChildren().add(wallTrap);
         
@@ -355,7 +394,7 @@ public class EasySceneController {
                 piercingCannon.setVisible(true);
                 dim.setVisible(true);
 
-                }
+            }
             
             
 
@@ -652,13 +691,136 @@ public class EasySceneController {
             
         });
 
+        laneRects[3].setOnMouseClicked(new EventHandler<Event>() {
+
+            @Override
+            public void handle(Event event) {
+               try {
+                battle.purchaseWeapon(weaponToBuyCode, lanes[3]);
+                for (Button button : laneRects) button.setVisible(false);
+                updateGUI();
+            } catch (InsufficientResourcesException e) {
+                
+                dim.setVisible(true);
+                Rectangle resourcesWarning = new Rectangle();
+                resourcesWarning.setWidth(500);
+                resourcesWarning.setHeight(300);
+                resourcesWarning.setLayoutX(960/2 - 250);
+                resourcesWarning.setLayoutY(540/2-150);
+                resourcesWarning.setVisible(true);
+                resourcesWarning.setFill(Color.DARKGRAY);
+                resourcesWarning.toFront();
+                root.getChildren().add(resourcesWarning);
+
+                Label resourcesWarningText = new Label("Insufficient Resources");
+                resourcesWarningText.setId("gameOver");
+                resourcesWarningText.setPrefWidth(450);
+                resourcesWarningText.setPrefHeight(60);
+                resourcesWarningText.setLayoutX(960/2 - 200);
+                resourcesWarningText.setLayoutY(540/2-125);
+                resourcesWarningText.setVisible(true);
+                resourcesWarningText.toFront();
+                root.getChildren().add(resourcesWarningText);
+
+                Button back = new Button("Back");
+                back.setId("menuButton");
+                back.setPrefWidth(450);
+                back.setPrefHeight(60);
+                back.setLayoutX(960/2 - 250 + 25);
+                back.setLayoutY(540/2-150 + 150);
+                back.setVisible(true);
+                back.toFront();
+                root.getChildren().add(back);
+
+                back.setOnMouseClicked(new EventHandler<Event>() {
+
+                    @Override
+                    public void handle(Event event) {
+                        dim.setVisible(false);
+                        resourcesWarning.setVisible(false);
+                        back.setVisible(false);
+                        resourcesWarningText.setVisible(false);
+                    }
+                    
+                });
+
+                
+            } catch (InvalidLaneException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            }
+            
+        });
+
+        laneRects[4].setOnMouseClicked(new EventHandler<Event>() {
+
+            @Override
+            public void handle(Event event) {
+               try {
+                battle.purchaseWeapon(weaponToBuyCode, lanes[4]);
+                for (Button button : laneRects) button.setVisible(false);
+                updateGUI();
+            } catch (InsufficientResourcesException e) {
+                
+                dim.setVisible(true);
+                Rectangle resourcesWarning = new Rectangle();
+                resourcesWarning.setWidth(500);
+                resourcesWarning.setHeight(300);
+                resourcesWarning.setLayoutX(960/2 - 250);
+                resourcesWarning.setLayoutY(540/2-150);
+                resourcesWarning.setVisible(true);
+                resourcesWarning.setFill(Color.DARKGRAY);
+                resourcesWarning.toFront();
+                root.getChildren().add(resourcesWarning);
+
+                Label resourcesWarningText = new Label("Insufficient Resources");
+                resourcesWarningText.setId("gameOver");
+                resourcesWarningText.setPrefWidth(450);
+                resourcesWarningText.setPrefHeight(60);
+                resourcesWarningText.setLayoutX(960/2 - 200);
+                resourcesWarningText.setLayoutY(540/2-125);
+                resourcesWarningText.setVisible(true);
+                resourcesWarningText.toFront();
+                root.getChildren().add(resourcesWarningText);
+
+                Button back = new Button("Back");
+                back.setId("menuButton");
+                back.setPrefWidth(450);
+                back.setPrefHeight(60);
+                back.setLayoutX(960/2 - 250 + 25);
+                back.setLayoutY(540/2-150 + 150);
+                back.setVisible(true);
+                back.toFront();
+                root.getChildren().add(back);
+
+                back.setOnMouseClicked(new EventHandler<Event>() {
+
+                    @Override
+                    public void handle(Event event) {
+                        dim.setVisible(false);
+                        resourcesWarning.setVisible(false);
+                        back.setVisible(false);
+                        resourcesWarningText.setVisible(false);
+                    }
+                    
+                });
+
+                
+            } catch (InvalidLaneException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            }
+            
+        });
+
         
         for (int i = 0; i < laneLost0.length; i++) {
             ImageView laneLost = new ImageView(getClass().getResource("assets/Images/laneLost.png").toString());
             laneLost.setFitWidth(960/6);
-            laneLost.setFitHeight(540/5);
-            
-            laneLost.setLayoutY(540/10);
+            laneLost.setFitHeight(540/8);
+            laneLost.setLayoutY(540/16);
             laneLost.setLayoutX(i * 960/6);
             laneLost0[i] = laneLost;
             laneLost.setVisible(false);
@@ -668,9 +830,9 @@ public class EasySceneController {
         for (int i = 0; i < laneLost1.length; i++) {
             ImageView laneLost = new ImageView(getClass().getResource("assets/Images/laneLost.png").toString());
             laneLost.setFitWidth(960/6);
-            laneLost.setFitHeight(540/5);
+            laneLost.setFitHeight(540/8);
             
-            laneLost.setLayoutY(4*540/10);
+            laneLost.setLayoutY(4*540/16);
             laneLost.setLayoutX(i * 960/6);
             laneLost1[i] = laneLost;
             laneLost.setVisible(false);
@@ -680,13 +842,37 @@ public class EasySceneController {
         for (int i = 0; i < laneLost2.length; i++) {
             ImageView laneLost = new ImageView(getClass().getResource("assets/Images/laneLost.png").toString());
             laneLost.setFitWidth(960/6);
-            laneLost.setFitHeight(540/5);
+            laneLost.setFitHeight(540/8);
             
-            laneLost.setLayoutY(7*540/10);
+            laneLost.setLayoutY(7*540/16);
             laneLost.setLayoutX(i * 960/6);
             laneLost2[i] = laneLost;
             laneLost.setVisible(false);
             root.getChildren().add(laneLost2[i]);
+        }
+
+        for (int i = 0; i < laneLost3.length; i++) {
+            ImageView laneLost = new ImageView(getClass().getResource("assets/Images/laneLost.png").toString());
+            laneLost.setFitWidth(960/6);
+            laneLost.setFitHeight(540/8);
+            
+            laneLost.setLayoutY(10*540/16);
+            laneLost.setLayoutX(i * 960/6);
+            laneLost3[i] = laneLost;
+            laneLost.setVisible(false);
+            root.getChildren().add(laneLost3[i]);
+        }
+
+        for (int i = 0; i < laneLost4.length; i++) {
+            ImageView laneLost = new ImageView(getClass().getResource("assets/Images/laneLost.png").toString());
+            laneLost.setFitWidth(960/6);
+            laneLost.setFitHeight(540/8);
+            
+            laneLost.setLayoutY(13*540/16);
+            laneLost.setLayoutX(i * 960/6);
+            laneLost4[i] = laneLost;
+            laneLost.setVisible(false);
+            root.getChildren().add(laneLost4[i]);
         }
 
         
@@ -704,27 +890,59 @@ public class EasySceneController {
     }
 
     private static void updateLaneLost(){
-        System.out.println(lanes[0].isLaneLost());
-        System.out.println(lanes[1].isLaneLost());
-        System.out.println(lanes[2].isLaneLost());
+
         if(lanes[0].isLaneLost()){
-            System.out.println("Lane 1 Lost");
+            
             for (ImageView imageView : laneLost0) {
                 imageView.setVisible(true);
             }
+
+            for (Titan t : lanes[0].getTitans()) {
+                titanImages.get(t).getTitanImage().setVisible(false);
+                titanImages.get(t).getTitanHealth().setVisible(false);
+            }
+
         }
     
         if(lanes[1].isLaneLost()){
-            System.out.println("Lane 2 Lost");
+            
             for (ImageView imageView : laneLost1) {
                 imageView.setVisible(true);
+            }
+            for (Titan t : lanes[1].getTitans()) {
+                titanImages.get(t).getTitanImage().setVisible(false);
+                titanImages.get(t).getTitanHealth().setVisible(false);
             }
         }
 
         if(lanes[2].isLaneLost()){
-            System.out.println("Lane 3 Lost");
+            
             for (ImageView imageView : laneLost2) {
                 imageView.setVisible(true);
+            }
+            for (Titan t : lanes[2].getTitans()) {
+                titanImages.get(t).getTitanImage().setVisible(false);
+                titanImages.get(t).getTitanHealth().setVisible(false);
+            }
+        }
+        if(lanes[3].isLaneLost()){
+            
+            for (ImageView imageView : laneLost3) {
+                imageView.setVisible(true);
+            }
+            for (Titan t : lanes[3].getTitans()) {
+                titanImages.get(t).getTitanImage().setVisible(false);
+                titanImages.get(t).getTitanHealth().setVisible(false);
+            }
+        }
+        if(lanes[4].isLaneLost()){
+            
+            for (ImageView imageView : laneLost4) {
+                imageView.setVisible(true);
+            }
+            for (Titan t : lanes[4].getTitans()) {
+                titanImages.get(t).getTitanImage().setVisible(false);
+                titanImages.get(t).getTitanHealth().setVisible(false);
             }
         }
     }
@@ -790,14 +1008,15 @@ public class EasySceneController {
 
         for (Titan t : titanImages.keySet()) {
                 if(t.isDefeated()){
-                ImageView image = titanImages.get(t).getTitanImage();
-                image.setY(1000);
-                image.setVisible(false);
-                titanImages.get(t).getTitanHealth().setLayoutY(1000);
+                    ImageView image = titanImages.get(t).getTitanImage();
+                    image.setY(1000);
+                    image.setVisible(false);
+                    titanImages.get(t).getTitanHealth().setLayoutY(1000);
+                    titanImages.get(t).getTitanImage().setLayoutY(1000);
                 }
         }
 
-  
+
         for (int i = 0; i < lanes.length; i++) {
             Lane lane = lanes[i];
             for (Titan titan : lane.getTitans()) {
@@ -808,15 +1027,15 @@ public class EasySceneController {
                     ImageView image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/AnimationFrames/Abnormal/Idle/0.png").toString()));
                     image.setRotationAxis(Rotate.Y_AXIS);
                     image.setRotate(180);
-                    image.setFitWidth(100);
-                    image.setFitHeight(100);
-                    image.setLayoutX(titan.getDistance()*6 + 275);
+                    image.setFitWidth(70);
+                    image.setFitHeight(70);
+                    image.setLayoutX(titan.getDistance()* 8 + 100);
                     // image.setLayoutY(100);
                     
                     switch (i) {
                         case 0:
                         if(titan.getHeightInMeters() == 60){
-                            image.setLayoutY(540/10);
+                            image.setLayoutY(540/16);
                             
                         }
                         else
@@ -824,21 +1043,35 @@ public class EasySceneController {
                             break;
                         case 1:
                         if(titan.getHeightInMeters() == 60){
-                            image.setLayoutY(540/10 + 150);
+                            image.setLayoutY(4*540/16);
                             
                         }
                         else
-                            image.setLayoutY(150);
+                            image.setLayoutY(3*540/16);
                             break;
                         case 2:
                         if(titan.getHeightInMeters() == 60){
-                            image.setLayoutY(540/10 + 300);
+                            image.setLayoutY(7*540/16);
                             
                         }
                         else
-                            image.setLayoutY(300);
+                            image.setLayoutY(6*540/16);
                             break;
-                    
+                        case 3:
+                        if(titan.getHeightInMeters() == 60)
+                            image.setLayoutY(10*540/16);
+                        else
+                            image.setLayoutY(9*540/16);
+                            
+                            break;
+                        case 4:
+                        if(titan.getHeightInMeters() == 60)
+                            image.setLayoutY(13*540/16);
+                        else
+                            image.setLayoutY(12*540/16);
+                        break;
+                        
+                        
                         default:
                             break;
                     }
@@ -854,7 +1087,7 @@ public class EasySceneController {
                     for (Titan t : titanImages.keySet()) {
                        
                         ImageView image = titanImages.get(t).getTitanImage();
-                        image.setLayoutX(t.getDistance()*6 + 275);
+                        image.setLayoutX(t.getDistance()*8 + 145);
                         titanImages.get(t).getTitanHealth().setProgress(t.getCurrentHealth()/(float)t.getBaseHealth());
                         titanImages.get(t).getTitanHealth().setLayoutX(image.getLayoutX());
                         

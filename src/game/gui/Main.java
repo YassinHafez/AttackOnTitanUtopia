@@ -279,6 +279,19 @@ public class Main extends Application{
             
         });
 
+        hard.setOnMouseClicked(new EventHandler<Event>() {
+
+            @Override
+            public void handle(Event event) {
+                try {
+                    new HardSceneController().startHard();
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
+            }
+            
+        });
+
 
         Label assem = new Label("ASSEM");
         assem.setPrefHeight(400);
