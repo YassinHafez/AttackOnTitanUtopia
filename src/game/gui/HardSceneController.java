@@ -793,7 +793,6 @@ public class HardSceneController {
                 back.setVisible(true);
                 back.toFront();
                 root.getChildren().add(back);
-
                 back.setOnMouseClicked(new EventHandler<Event>() {
 
                     @Override
@@ -831,7 +830,6 @@ public class HardSceneController {
             ImageView laneLost = new ImageView(getClass().getResource("assets/Images/laneLost.png").toString());
             laneLost.setFitWidth(960/6);
             laneLost.setFitHeight(540/8);
-            
             laneLost.setLayoutY(4*540/16);
             laneLost.setLayoutX(i * 960/6);
             laneLost1[i] = laneLost;

@@ -354,7 +354,13 @@ public class EasySceneController {
                 wallTrap.setVisible(true);
                 piercingCannon.setVisible(true);
                 dim.setVisible(true);
-
+                dim.toFront();;
+                purchase.toFront();
+                closePurchase.toFront();
+                sniperCannon.toFront();
+                volleySpread.toFront();
+                wallTrap.toFront();
+                piercingCannon.toFront();
                 }
             
             
@@ -412,6 +418,8 @@ public class EasySceneController {
                 wallTrap.setVisible(false);
                 piercingCannon.setVisible(false);
                 dim.setVisible(false);
+
+                
             }
             
         });
@@ -478,6 +486,59 @@ public class EasySceneController {
                 battle.purchaseWeapon(weaponToBuyCode, lanes[0]);
                 for (Button button : laneRects) button.setVisible(false);
                 updateGUI();
+                ImageView weaponImage;
+                switch (weaponToBuyCode) {
+
+                    case 1: 
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10);
+                    weaponImage.setFitWidth(960/16);
+                
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(3*960/16);
+                    weaponImage.setLayoutY(540/10 - 10);
+                    root.getChildren().add(weaponImage);    
+                    break;
+
+                    case 3:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10);
+                    weaponImage.setFitWidth(960/16);
+                
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(2*960/16);
+                    weaponImage.setLayoutY(540/10 - 10);
+                    root.getChildren().add(weaponImage);
+                    break;
+
+
+
+                    case 4:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage.setFitHeight(540/10);
+                    weaponImage.setFitWidth(960/16);
+    
+                    weaponImage.setRotate(-90);
+                    weaponImage.setLayoutX(4*960/16);
+                    weaponImage.setLayoutY(540/10 - 10);
+                    root.getChildren().add(weaponImage);
+                    break;
+                
+                    case 2:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Sniper Cannon/Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10);
+                    weaponImage.setFitWidth(960/16);
+                    weaponImage.setRotationAxis(Rotate.Y_AXIS);
+                    weaponImage.setRotate(180);
+                    weaponImage.setLayoutX(960/16);
+                    weaponImage.setLayoutY(540/10 - 10);
+                    root.getChildren().add(weaponImage);
+                    break;
+
+                    default:
+                        break;
+                }
+
             } catch (InsufficientResourcesException e) {
                 dim.setVisible(true);
                 Rectangle resourcesWarning = new Rectangle();
@@ -538,6 +599,48 @@ public class EasySceneController {
                 battle.purchaseWeapon(weaponToBuyCode, lanes[1]);
                 for (Button button : laneRects) button.setVisible(false);
                 updateGUI();
+                ImageView weaponImage;
+
+                switch (weaponToBuyCode) {
+                    
+                    case 1: 
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10);
+                    weaponImage.setFitWidth(960/16);
+                
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(3*960/16);
+                    weaponImage.setLayoutY(4*540/10 - 10);
+                    root.getChildren().add(weaponImage);    
+                    break;
+                    
+
+                    case 4:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage.setFitHeight(540/10);
+                    weaponImage.setFitWidth(960/16);
+    
+                    weaponImage.setRotate(-90);
+                    weaponImage.setLayoutX(4*960/16);
+                    weaponImage.setLayoutY(4*540/10 - 10);
+                    root.getChildren().add(weaponImage);
+                    break;
+                    
+                    case 2:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Sniper Cannon/Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10);
+                    weaponImage.setFitWidth(960/16);
+                    weaponImage.setRotationAxis(Rotate.Y_AXIS);
+                    weaponImage.setRotate(180);
+                    weaponImage.setLayoutX(960/16);
+                    weaponImage.setLayoutY(4*540/10 - 10);
+                    root.getChildren().add(weaponImage);
+                    break;
+                
+                    default:
+                        break;
+                }
+            
             } catch (InsufficientResourcesException e) {
                 dim.setVisible(true);
                 Rectangle resourcesWarning = new Rectangle();
@@ -598,6 +701,49 @@ public class EasySceneController {
                 battle.purchaseWeapon(weaponToBuyCode, lanes[2]);
                 for (Button button : laneRects) button.setVisible(false);
                 updateGUI();
+                ImageView weaponImage;
+
+                switch (weaponToBuyCode) {
+                    
+                    case 1: 
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10);
+                    weaponImage.setFitWidth(960/16);
+                
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(3*960/16);
+                    weaponImage.setLayoutY(7*540/10 - 10);
+                    root.getChildren().add(weaponImage);    
+                    break;
+                    
+                    
+                    case 2:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Sniper Cannon/Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10);
+                    weaponImage.setFitWidth(960/16);
+                    weaponImage.setRotationAxis(Rotate.Y_AXIS);
+                    weaponImage.setRotate(180);
+                    weaponImage.setLayoutX(960/16);
+                    weaponImage.setLayoutY(7*540/10 - 10);
+                    root.getChildren().add(weaponImage);
+                    break;
+                    
+                    case 4:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage.setFitHeight(540/10);
+                    weaponImage.setFitWidth(960/16);
+    
+                    weaponImage.setRotate(-90);
+                    weaponImage.setLayoutX(4*960/16);
+                    weaponImage.setLayoutY(7*540/10 - 10);
+                    root.getChildren().add(weaponImage);
+                    break;
+
+
+                    default:
+                        break;
+                }
+
             } catch (InsufficientResourcesException e) {
                 
                 dim.setVisible(true);
