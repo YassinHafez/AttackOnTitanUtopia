@@ -487,6 +487,7 @@ public class EasySceneController {
                 for (Button button : laneRects) button.setVisible(false);
                 updateGUI();
                 ImageView weaponImage;
+                ImageView weaponImage2;
                 switch (weaponToBuyCode) {
 
                     case 1: 
@@ -498,6 +499,17 @@ public class EasySceneController {
                     weaponImage.setLayoutX(3*960/16);
                     weaponImage.setLayoutY(540/10 - 10);
                     root.getChildren().add(weaponImage);    
+                    break;
+                    
+                    case 2:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Sniper Cannon/Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10);
+                    weaponImage.setFitWidth(960/16);
+                    weaponImage.setRotationAxis(Rotate.Y_AXIS);
+                    weaponImage.setRotate(180);
+                    weaponImage.setLayoutX(960/16);
+                    weaponImage.setLayoutY(540/10 - 10);
+                    root.getChildren().add(weaponImage);
                     break;
 
                     case 3:
@@ -520,20 +532,21 @@ public class EasySceneController {
     
                     weaponImage.setRotate(-90);
                     weaponImage.setLayoutX(4*960/16);
-                    weaponImage.setLayoutY(540/10 - 10);
+                    weaponImage.setLayoutY(540/10);
                     root.getChildren().add(weaponImage);
+
+                    weaponImage2 = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage2.setFitHeight(540/10);
+                    weaponImage2.setFitWidth(960/16);
+    
+                    weaponImage2.setRotate(-90);
+                    weaponImage2.setLayoutX(4*960/16);
+                    weaponImage2.setLayoutY(540/10 +50);
+                    root.getChildren().add(weaponImage2);
+
                     break;
                 
-                    case 2:
-                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Sniper Cannon/Cannon.png").toString());
-                    weaponImage.setFitHeight(540/10);
-                    weaponImage.setFitWidth(960/16);
-                    weaponImage.setRotationAxis(Rotate.Y_AXIS);
-                    weaponImage.setRotate(180);
-                    weaponImage.setLayoutX(960/16);
-                    weaponImage.setLayoutY(540/10 - 10);
-                    root.getChildren().add(weaponImage);
-                    break;
+                    
 
                     default:
                         break;
@@ -600,6 +613,7 @@ public class EasySceneController {
                 for (Button button : laneRects) button.setVisible(false);
                 updateGUI();
                 ImageView weaponImage;
+                ImageView weaponImage2;
 
                 switch (weaponToBuyCode) {
                     
@@ -613,19 +627,7 @@ public class EasySceneController {
                     weaponImage.setLayoutY(4*540/10 - 10);
                     root.getChildren().add(weaponImage);    
                     break;
-                    
 
-                    case 4:
-                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
-                    weaponImage.setFitHeight(540/10);
-                    weaponImage.setFitWidth(960/16);
-    
-                    weaponImage.setRotate(-90);
-                    weaponImage.setLayoutX(4*960/16);
-                    weaponImage.setLayoutY(4*540/10 - 10);
-                    root.getChildren().add(weaponImage);
-                    break;
-                    
                     case 2:
                     weaponImage = new ImageView(getClass().getResource("assets/Weapons/Sniper Cannon/Cannon.png").toString());
                     weaponImage.setFitHeight(540/10);
@@ -636,6 +638,41 @@ public class EasySceneController {
                     weaponImage.setLayoutY(4*540/10 - 10);
                     root.getChildren().add(weaponImage);
                     break;
+
+                    case 3:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10);
+                    weaponImage.setFitWidth(960/16);
+                
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(2*960/16);
+                    weaponImage.setLayoutY(540/10 + 153);
+                    root.getChildren().add(weaponImage);
+                    break;
+                    
+
+                    case 4:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage.setFitHeight(540/10);
+                    weaponImage.setFitWidth(960/16);
+    
+                    weaponImage.setRotate(-90);
+                    weaponImage.setLayoutX(4*960/16);
+                    weaponImage.setLayoutY(4*540/10);
+                    root.getChildren().add(weaponImage);
+
+                    weaponImage2 = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage2.setFitHeight(540/10);
+                    weaponImage2.setFitWidth(960/16);
+    
+                    weaponImage2.setRotate(-90);
+                    weaponImage2.setLayoutX(4*960/16);
+                    weaponImage2.setLayoutY(4*540/10 + 50);
+                    root.getChildren().add(weaponImage2);
+
+                    break;
+                    
+                    
                 
                     default:
                         break;
@@ -702,6 +739,7 @@ public class EasySceneController {
                 for (Button button : laneRects) button.setVisible(false);
                 updateGUI();
                 ImageView weaponImage;
+                ImageView weaponImage2;
 
                 switch (weaponToBuyCode) {
                     
@@ -727,6 +765,16 @@ public class EasySceneController {
                     weaponImage.setLayoutY(7*540/10 - 10);
                     root.getChildren().add(weaponImage);
                     break;
+
+                    case 3:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10);
+                    weaponImage.setFitWidth(960/16);
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(2*960/16);
+                    weaponImage.setLayoutY(7*540/10 - 10);
+                    root.getChildren().add(weaponImage);
+                    break;
                     
                     case 4:
                     weaponImage = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
@@ -735,8 +783,18 @@ public class EasySceneController {
     
                     weaponImage.setRotate(-90);
                     weaponImage.setLayoutX(4*960/16);
-                    weaponImage.setLayoutY(7*540/10 - 10);
+                    weaponImage.setLayoutY(7*540/10);
                     root.getChildren().add(weaponImage);
+
+                    weaponImage2 = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage2.setFitHeight(540/10);
+                    weaponImage2.setFitWidth(960/16);
+    
+                    weaponImage2.setRotate(-90);
+                    weaponImage2.setLayoutX(4*960/16);
+                    weaponImage2.setLayoutY(7*540/10 + 50);
+                    root.getChildren().add(weaponImage2);
+
                     break;
 
 

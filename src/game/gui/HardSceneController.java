@@ -517,6 +517,74 @@ public class HardSceneController {
                 battle.purchaseWeapon(weaponToBuyCode, lanes[0]);
                 for (Button button : laneRects) button.setVisible(false);
                 updateGUI();
+                ImageView weaponImage;
+                ImageView weaponImage2;
+                switch (weaponToBuyCode) {
+
+                    case 1: 
+                    //piercing
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+                
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(3*960/16 - 60);
+                    weaponImage.setLayoutY(540/10 - 10);
+                    root.getChildren().add(weaponImage);   
+
+                    break;
+
+                    case 2:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Sniper Cannon/Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+                    weaponImage.setRotationAxis(Rotate.Y_AXIS);
+                    weaponImage.setRotate(180);
+                    weaponImage.setLayoutX(960/20 - 15);
+                    weaponImage.setLayoutY(540/10 - 11);
+                    root.getChildren().add(weaponImage);
+                    break;
+
+                    case 3:
+                    //VolleySpread
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+                
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(2*960/16 - 50);
+                    weaponImage.setLayoutY(540/10 - 10);
+                    root.getChildren().add(weaponImage);
+                    break;
+
+
+
+                    case 4:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+    
+                    weaponImage.setRotate(-90);
+                    weaponImage.setLayoutX(4*960/16 - 95);
+                    weaponImage.setLayoutY(540/10 - 23);
+                    root.getChildren().add(weaponImage);
+
+                    weaponImage2 = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage2.setFitHeight(540/10 - 10);
+                    weaponImage2.setFitWidth(960/16 - 10);
+    
+                    weaponImage2.setRotate(-90);
+                    weaponImage2.setLayoutX(4*960/16 - 95);
+                    weaponImage2.setLayoutY(540/10 +6);
+                    root.getChildren().add(weaponImage2);
+
+                    break;
+                
+
+                    default:
+                        break;
+                }
+
             } catch (InsufficientResourcesException e) {
                 dim.setVisible(true);
                 Rectangle resourcesWarning = new Rectangle();
@@ -577,6 +645,74 @@ public class HardSceneController {
                 battle.purchaseWeapon(weaponToBuyCode, lanes[1]);
                 for (Button button : laneRects) button.setVisible(false);
                 updateGUI();
+                ImageView weaponImage;
+                ImageView weaponImage2;
+
+                switch (weaponToBuyCode) {
+                    
+                    case 1: 
+                    //piercing
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+                
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(3*960/16 - 60);
+                    weaponImage.setLayoutY(540/10 +90);
+                    root.getChildren().add(weaponImage);   
+
+                    break;
+
+                    case 2:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Sniper Cannon/Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+                    weaponImage.setRotationAxis(Rotate.Y_AXIS);
+                    weaponImage.setRotate(180);
+                    weaponImage.setLayoutX(960/20 - 15);
+                    weaponImage.setLayoutY(540/10 +90);
+                    root.getChildren().add(weaponImage);
+                    break;
+
+                    case 3:
+                    //VolleySpread
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+                
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(2*960/16 - 50);
+                    weaponImage.setLayoutY(540/10 +90);
+                    root.getChildren().add(weaponImage);
+                    break;
+                
+                    
+
+                    case 4:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+    
+                    weaponImage.setRotate(-90);
+                    weaponImage.setLayoutX(4*960/16 - 95);
+                    weaponImage.setLayoutY(4*540/10 - 85);
+                    root.getChildren().add(weaponImage);
+
+                    weaponImage2 = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage2.setFitHeight(540/10 - 10);
+                    weaponImage2.setFitWidth(960/16 - 10);
+    
+                    weaponImage2.setRotate(-90);
+                    weaponImage2.setLayoutX(4*960/16 - 95);
+                    weaponImage2.setLayoutY(4*540/10 - 55);
+                    root.getChildren().add(weaponImage2);
+
+                    break;
+                
+                    default:
+                        break;
+                }
+            
             } catch (InsufficientResourcesException e) {
                 dim.setVisible(true);
                 Rectangle resourcesWarning = new Rectangle();
@@ -634,11 +770,78 @@ public class HardSceneController {
             @Override
             public void handle(Event event) {
                try {
-                battle.purchaseWeapon(weaponToBuyCode, lanes[2]);
+                battle.purchaseWeapon(weaponToBuyCode, lanes[1]);
                 for (Button button : laneRects) button.setVisible(false);
                 updateGUI();
-            } catch (InsufficientResourcesException e) {
+                ImageView weaponImage;
+                ImageView weaponImage2;
+
+                switch (weaponToBuyCode) {
+                    
+                    case 1: 
+                    //piercing
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
                 
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(3*960/16 - 60);
+                    weaponImage.setLayoutY(540/10 +193);
+                    root.getChildren().add(weaponImage);   
+
+                    break;
+
+                    case 2:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Sniper Cannon/Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+                    weaponImage.setRotationAxis(Rotate.Y_AXIS);
+                    weaponImage.setRotate(180);
+                    weaponImage.setLayoutX(960/20 - 15);
+                    weaponImage.setLayoutY(540/10 +193);
+                    root.getChildren().add(weaponImage);
+                    break;
+
+                    case 3:
+                    //VolleySpread
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+                
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(2*960/16 - 50);
+                    weaponImage.setLayoutY(540/10 +193);
+                    root.getChildren().add(weaponImage);
+                    break;
+                
+                    
+
+                    case 4:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+    
+                    weaponImage.setRotate(-90);
+                    weaponImage.setLayoutX(4*960/16 - 95);
+                    weaponImage.setLayoutY(4*540/10 +17);
+                    root.getChildren().add(weaponImage);
+
+                    weaponImage2 = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage2.setFitHeight(540/10 - 10);
+                    weaponImage2.setFitWidth(960/16 - 10);
+    
+                    weaponImage2.setRotate(-90);
+                    weaponImage2.setLayoutX(4*960/16 - 95);
+                    weaponImage2.setLayoutY(4*540/10 + 47);
+                    root.getChildren().add(weaponImage2);
+
+                    break;
+                
+                    default:
+                        break;
+                }
+            
+            } catch (InsufficientResourcesException e) {
                 dim.setVisible(true);
                 Rectangle resourcesWarning = new Rectangle();
                 resourcesWarning.setWidth(500);
@@ -682,7 +885,6 @@ public class HardSceneController {
                     
                 });
 
-                
             } catch (InvalidLaneException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -696,11 +898,78 @@ public class HardSceneController {
             @Override
             public void handle(Event event) {
                try {
-                battle.purchaseWeapon(weaponToBuyCode, lanes[3]);
+                battle.purchaseWeapon(weaponToBuyCode, lanes[1]);
                 for (Button button : laneRects) button.setVisible(false);
                 updateGUI();
-            } catch (InsufficientResourcesException e) {
+                ImageView weaponImage;
+                ImageView weaponImage2;
+
+                switch (weaponToBuyCode) {
+                    
+                    case 1: 
+                    //piercing
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
                 
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(3*960/16 - 60);
+                    weaponImage.setLayoutY(540/10 +295);
+                    root.getChildren().add(weaponImage);   
+
+                    break;
+
+                    case 2:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Sniper Cannon/Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+                    weaponImage.setRotationAxis(Rotate.Y_AXIS);
+                    weaponImage.setRotate(180);
+                    weaponImage.setLayoutX(960/20 - 15);
+                    weaponImage.setLayoutY(540/10 +295);
+                    root.getChildren().add(weaponImage);
+                    break;
+
+                    case 3:
+                    //VolleySpread
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+                
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(2*960/16 - 50);
+                    weaponImage.setLayoutY(540/10 +295);
+                    root.getChildren().add(weaponImage);
+                    break;
+                
+                    
+
+                    case 4:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+    
+                    weaponImage.setRotate(-90);
+                    weaponImage.setLayoutX(4*960/16 - 95);
+                    weaponImage.setLayoutY(4*540/10 +120);
+                    root.getChildren().add(weaponImage);
+
+                    weaponImage2 = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage2.setFitHeight(540/10 - 10);
+                    weaponImage2.setFitWidth(960/16 - 10);
+    
+                    weaponImage2.setRotate(-90);
+                    weaponImage2.setLayoutX(4*960/16 - 95);
+                    weaponImage2.setLayoutY(4*540/10 + 148);
+                    root.getChildren().add(weaponImage2);
+
+                    break;
+                
+                    default:
+                        break;
+                }
+            
+            } catch (InsufficientResourcesException e) {
                 dim.setVisible(true);
                 Rectangle resourcesWarning = new Rectangle();
                 resourcesWarning.setWidth(500);
@@ -744,7 +1013,6 @@ public class HardSceneController {
                     
                 });
 
-                
             } catch (InvalidLaneException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -758,11 +1026,78 @@ public class HardSceneController {
             @Override
             public void handle(Event event) {
                try {
-                battle.purchaseWeapon(weaponToBuyCode, lanes[4]);
+                battle.purchaseWeapon(weaponToBuyCode, lanes[1]);
                 for (Button button : laneRects) button.setVisible(false);
                 updateGUI();
-            } catch (InsufficientResourcesException e) {
+                ImageView weaponImage;
+                ImageView weaponImage2;
+
+                switch (weaponToBuyCode) {
+                    
+                    case 1: 
+                    //piercing
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
                 
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(3*960/16 - 60);
+                    weaponImage.setLayoutY(540/10 +395);
+                    root.getChildren().add(weaponImage);   
+
+                    break;
+
+                    case 2:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Sniper Cannon/Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+                    weaponImage.setRotationAxis(Rotate.Y_AXIS);
+                    weaponImage.setRotate(180);
+                    weaponImage.setLayoutX(960/20 - 15);
+                    weaponImage.setLayoutY(540/10 +395);
+                    root.getChildren().add(weaponImage);
+                    break;
+
+                    case 3:
+                    //VolleySpread
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+                
+                    weaponImage.setRotate(45);
+                    weaponImage.setLayoutX(2*960/16 - 50);
+                    weaponImage.setLayoutY(540/10 +395);
+                    root.getChildren().add(weaponImage);
+                    break;
+                
+                    
+
+                    case 4:
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage.setFitHeight(540/10 - 10);
+                    weaponImage.setFitWidth(960/16 - 10);
+    
+                    weaponImage.setRotate(-90);
+                    weaponImage.setLayoutX(4*960/16 - 95);
+                    weaponImage.setLayoutY(4*540/10 +220);
+                    root.getChildren().add(weaponImage);
+
+                    weaponImage2 = new ImageView(getClass().getResource("assets/Weapons/Wall Trap/Wall Trap.png").toString());
+                    weaponImage2.setFitHeight(540/10 - 10);
+                    weaponImage2.setFitWidth(960/16 - 10);
+    
+                    weaponImage2.setRotate(-90);
+                    weaponImage2.setLayoutX(4*960/16 - 95);
+                    weaponImage2.setLayoutY(4*540/10 + 250);
+                    root.getChildren().add(weaponImage2);
+
+                    break;
+                
+                    default:
+                        break;
+                }
+            
+            } catch (InsufficientResourcesException e) {
                 dim.setVisible(true);
                 Rectangle resourcesWarning = new Rectangle();
                 resourcesWarning.setWidth(500);
@@ -793,6 +1128,7 @@ public class HardSceneController {
                 back.setVisible(true);
                 back.toFront();
                 root.getChildren().add(back);
+
                 back.setOnMouseClicked(new EventHandler<Event>() {
 
                     @Override
@@ -805,7 +1141,6 @@ public class HardSceneController {
                     
                 });
 
-                
             } catch (InvalidLaneException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
