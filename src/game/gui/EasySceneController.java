@@ -1275,8 +1275,9 @@ public class EasySceneController {
 
     
     private static void updateWallHealth() {
-        for(int i =0; i<3;i++){
-            wallHealthBars[i].setProgress((lanes[i].getLaneWall().getCurrentHealth())/(10000));
+        for(int i =0; i<3 ;i++){
+            wallHealthBars[i].setProgress((lanes[i].getLaneWall().getCurrentHealth())/ (float) 10000);
+            System.out.println(lanes[i].getLaneWall().getCurrentHealth());
         }
     }
 
@@ -1405,7 +1406,21 @@ public class EasySceneController {
 
 
                 if(!titanImages.containsKey(titan)){
-                    ImageView image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/AnimationFrames/Abnormal/Idle/0.png").toString()));
+                    ImageView image;
+                    
+
+                    switch(titan.getDangerLevel()){
+                        case 3:
+                            image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/ArmoredTitanFrames/tile000.png").toString()));
+                            break;
+                        case 4:
+                            image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/ColossalFrames/ready_1.png").toString()));
+                            break;
+                        default:
+                            image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/AnimationFrames/Abnormal/Idle/0.png").toString()));
+                            break;
+                    }
+                    
                     image.setRotationAxis(Rotate.Y_AXIS);
                     image.setRotate(180);
                     image.setFitWidth(100);
@@ -1415,24 +1430,26 @@ public class EasySceneController {
                     
                     switch (i) {
                         case 0:
-                        if(titan.getHeightInMeters() == 60){
-                            image.setLayoutY(540/10);
+                        if(titan.getDangerLevel() == 4 || titan.getDangerLevel()==3){
+                            if(titan.getDangerLevel()== 4)  image.setLayoutY(540/10 + 15);
+                            else image.setLayoutY(540/10 + 30);
                             
                         }
                         else
                             image.setLayoutY(0);
                             break;
                         case 1:
-                        if(titan.getHeightInMeters() == 60){
-                            image.setLayoutY(540/10 + 150);
-                            
+                        if(titan.getDangerLevel() == 4 || titan.getDangerLevel()==3){
+                            if(titan.getDangerLevel()==4)   image.setLayoutY(540/10 + 165);
+                            else    image.setLayoutY(540/10 + 190);
                         }
                         else
                             image.setLayoutY(150);
                             break;
                         case 2:
-                        if(titan.getHeightInMeters() == 60){
-                            image.setLayoutY(540/10 + 300);
+                        if(titan.getDangerLevel() == 4 || titan.getDangerLevel()==3){
+                            if(titan.getDangerLevel()==4)   image.setLayoutY(540/10 + 325);
+                            else image.setLayoutY(540/10 + 355);
                             
                         }
                         else
@@ -1446,7 +1463,11 @@ public class EasySceneController {
                     ProgressBar titanHealth = new ProgressBar(1);
                     root.getChildren().add(titanHealth);
                     titanHealth.setLayoutX(image.getLayoutX());
-                    titanHealth.setLayoutY(image.getLayoutY()-5);
+                    if(titan.getDangerLevel()==4 || titan.getDangerLevel()==3)
+                        if(titan.getDangerLevel()==4)titanHealth.setLayoutY(image.getLayoutY()-5);
+                        else titanHealth.setLayoutY(image.getLayoutY() + 5);
+                    else
+                        titanHealth.setLayoutY(image.getLayoutY()+25);
                     TitanIcon titanIcon = new TitanIcon(titan, image, titanHealth);
                     titanImages.put(titan, titanIcon);
                 }else{
