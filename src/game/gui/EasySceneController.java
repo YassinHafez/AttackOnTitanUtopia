@@ -13,6 +13,7 @@ import game.engine.exceptions.InsufficientResourcesException;
 import game.engine.exceptions.InvalidLaneException;
 import game.engine.lanes.Lane;
 import game.engine.titans.Titan;
+import game.engine.weapons.VolleySpreadCannon;
 import javafx.animation.AnimationTimer;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -56,6 +57,16 @@ public class EasySceneController {
     public static ImageView[] laneLost0 = new ImageView[6];
     public static ImageView[] laneLost1 = new ImageView[6];
     public static ImageView[] laneLost2 = new ImageView[6];
+
+    public static int[] piercingCannonCount = new int[3];
+    public static int[] sniperCannonCount = new int[3];
+    public static int[] volleyCannonCount = new int[3];
+    public static int[] wallTrapCount =new int[3];
+
+    private static Label[] piercingCannonCountLabels = new Label[3];
+    private static Label[] sniperCannonCountLabels = new Label[3];
+    private static Label[] volleyCannonCountLabels = new Label[3];
+    private static Label[] wallTrapCountLabels = new Label[3];
 
     public void startEasy() throws IOException{
 
@@ -146,8 +157,6 @@ public class EasySceneController {
             if(i!=0 && i!=3 && i!=6 && i!=9){
 
                 ImageView wall = new ImageView(getClass().getResource("assets/Images/Wall/0.png").toString());
-                
-                
                 wall.setFitWidth(960/10);
                 wall.setFitHeight(540/8); 
                 wall.setRotate(-90);
@@ -185,7 +194,16 @@ public class EasySceneController {
         root.getChildren().add(score);
         score.setVisible(true);
 
-        resources = new Label("Resources: " + battle.getResourcesGathered());
+
+        ImageView resourcePic = new ImageView(getClass().getResource("assets/Images/diamond.png").toString());
+        resourcePic.setLayoutX(230);
+        resourcePic.setLayoutY(15);
+        resourcePic.setScaleX(3);
+        resourcePic.setScaleY(3);
+        root.getChildren().add(resourcePic);
+
+
+        resources = new Label( " " + battle.getResourcesGathered());
         resources.setId("resources");
         resources.setLayoutX(250);
         resources.setLayoutY(-5);
@@ -465,18 +483,60 @@ public class EasySceneController {
                 if(event.getCode() == KeyCode.ESCAPE){
                     weaponToBuyCode = 0;
                     for (Button button : laneRects)  button.setVisible(false);
-                    
+                    dim.setVisible(false);
                     purchase.setVisible(false);
                 closePurchase.setVisible(false);
                 sniperCannon.setVisible(false);
                 volleySpread.setVisible(false);
                 wallTrap.setVisible(false);
                 piercingCannon.setVisible(false);
+                
 
                 }
             }
             
         });
+
+        
+        sniperCannonCountLabels[0] = new Label();
+        sniperCannonCountLabels[1] = new Label();
+        sniperCannonCountLabels[2] = new Label();
+        
+        piercingCannonCountLabels[0] = new Label();
+        piercingCannonCountLabels[1] = new Label();
+        piercingCannonCountLabels[2] = new Label();
+
+        volleyCannonCountLabels[0] = new Label();
+        volleyCannonCountLabels[1] = new Label();
+        volleyCannonCountLabels[2] = new Label();
+
+        wallTrapCountLabels[0] = new Label();
+        wallTrapCountLabels[1] = new Label();
+        wallTrapCountLabels[2] = new Label();
+
+
+        for (Label label : sniperCannonCountLabels) {   
+            label.setVisible(false);
+            root.getChildren().add(label);
+            
+        }
+
+        for (Label label : piercingCannonCountLabels) {
+            label.setVisible(false);
+            root.getChildren().add(label);
+        }
+        
+        for (Label label : volleyCannonCountLabels) {
+            label.setVisible(false);
+            root.getChildren().add(label);
+        }
+        
+        for (Label label : wallTrapCountLabels) {
+            label.setVisible(false);
+            root.getChildren().add(label);
+        }
+
+
 
         laneRects[0].setOnMouseClicked(new EventHandler<Event>() {
 
@@ -491,14 +551,26 @@ public class EasySceneController {
                 switch (weaponToBuyCode) {
 
                     case 1: 
-                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Piercing Cannon/Volley Spread Cannon.png").toString());
                     weaponImage.setFitHeight(540/10);
                     weaponImage.setFitWidth(960/16);
                 
                     weaponImage.setRotate(45);
                     weaponImage.setLayoutX(3*960/16);
-                    weaponImage.setLayoutY(540/10 - 10);
-                    root.getChildren().add(weaponImage);    
+                    weaponImage.setLayoutY(540/10 + 25);
+                    root.getChildren().add(weaponImage);   
+                    piercingCannonCount[0] += 1; 
+
+                    if(piercingCannonCount[0] == 1){
+                        piercingCannonCountLabels[0].setVisible(true);
+                    }
+
+                    piercingCannonCountLabels[0].setLayoutX(3*960/16 + 20);
+                    piercingCannonCountLabels[0].setLayoutY(540/10 - 20);
+                    piercingCannonCountLabels[0].setId("score");
+                    piercingCannonCountLabels[0].setPrefHeight(20);
+                    piercingCannonCountLabels[0].setPrefWidth(20);
+
                     break;
                     
                     case 2:
@@ -508,8 +580,17 @@ public class EasySceneController {
                     weaponImage.setRotationAxis(Rotate.Y_AXIS);
                     weaponImage.setRotate(180);
                     weaponImage.setLayoutX(960/16);
-                    weaponImage.setLayoutY(540/10 - 10);
+                    weaponImage.setLayoutY(540/10 + 25);
+                    sniperCannonCount[0]+=1;
                     root.getChildren().add(weaponImage);
+
+                    if(sniperCannonCount[0] == 0){
+                        sniperCannonCountLabels[0].setVisible(true);
+                    }
+
+                    sniperCannonCountLabels[0].setLayoutX(960/16);
+                    sniperCannonCountLabels[0].setLayoutY(540/10);
+                    
                     break;
 
                     case 3:
@@ -519,8 +600,14 @@ public class EasySceneController {
                 
                     weaponImage.setRotate(45);
                     weaponImage.setLayoutX(2*960/16);
-                    weaponImage.setLayoutY(540/10 - 10);
+                    weaponImage.setLayoutY(540/10 + 25);
+                    volleyCannonCount[0]+=1;
                     root.getChildren().add(weaponImage);
+
+                    if(piercingCannonCount[0] == 0){
+                        volleyCannonCountLabels[0].setVisible(true);
+                    }
+
                     break;
 
 
@@ -543,6 +630,11 @@ public class EasySceneController {
                     weaponImage2.setLayoutX(4*960/16);
                     weaponImage2.setLayoutY(540/10 +50);
                     root.getChildren().add(weaponImage2);
+                    wallTrapCount[0]+=1;
+
+                    if(piercingCannonCount[0] == 0){
+                        wallTrapCountLabels[0].setVisible(true);
+                    }
 
                     break;
                 
@@ -551,6 +643,7 @@ public class EasySceneController {
                     default:
                         break;
                 }
+                updateWeaponCount();
 
             } catch (InsufficientResourcesException e) {
                 dim.setVisible(true);
@@ -597,12 +690,56 @@ public class EasySceneController {
                 });
 
             } catch (InvalidLaneException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                dim.setVisible(true);
+                Rectangle InvalidLaneRectangle = new Rectangle();
+                InvalidLaneRectangle.setWidth(500);
+                InvalidLaneRectangle.setHeight(300);
+                InvalidLaneRectangle.setLayoutX(960/2 - 250);
+                InvalidLaneRectangle.setLayoutY(540/2-150);
+                InvalidLaneRectangle.setVisible(true);
+                InvalidLaneRectangle.setFill(Color.DARKGRAY);
+                InvalidLaneRectangle.toFront();
+                root.getChildren().add(InvalidLaneRectangle);
+
+                Label InvalidLaneText = new Label("Lane Destroyed!");
+                InvalidLaneText.setId("gameOver");
+                InvalidLaneText.setPrefWidth(450);
+                InvalidLaneText.setPrefHeight(60);
+                InvalidLaneText.setLayoutX(960/2 - 200);
+                InvalidLaneText.setLayoutY(540/2-125);
+                InvalidLaneText.setVisible(true);
+                InvalidLaneText.toFront();
+                root.getChildren().add(InvalidLaneText);    
+                
+                Button back = new Button("Back");
+                back.setId("passturn");
+                back.setPrefWidth(450);
+                back.setPrefHeight(60);
+                back.setLayoutX(960/2 - 200);
+                back.setLayoutY(540/2);
+                back.setVisible(true);
+                back.toFront();
+                root.getChildren().add(back);  
+                
+                back.setOnMouseClicked( new EventHandler<Event>() {
+
+                    @Override
+                    public void handle(Event event) {
+                        dim.setVisible(false);
+                        back.setVisible(false);
+                        InvalidLaneRectangle.setVisible(false);
+                        InvalidLaneText.setVisible(false);
+                    }
+                    
+                    
+                });
+
+                
             }
             }
             
         });
+
         
         laneRects[1].setOnMouseClicked(new EventHandler<Event>() {
 
@@ -618,14 +755,16 @@ public class EasySceneController {
                 switch (weaponToBuyCode) {
                     
                     case 1: 
-                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Piercing Cannon/Volley Spread Cannon.png").toString());
                     weaponImage.setFitHeight(540/10);
                     weaponImage.setFitWidth(960/16);
                 
                     weaponImage.setRotate(45);
                     weaponImage.setLayoutX(3*960/16);
                     weaponImage.setLayoutY(4*540/10 - 10);
-                    root.getChildren().add(weaponImage);    
+                    root.getChildren().add(weaponImage);  
+                    piercingCannonCount[1] += 1;
+
                     break;
 
                     case 2:
@@ -637,6 +776,7 @@ public class EasySceneController {
                     weaponImage.setLayoutX(960/16);
                     weaponImage.setLayoutY(4*540/10 - 10);
                     root.getChildren().add(weaponImage);
+                    sniperCannonCount[1] += 1;
                     break;
 
                     case 3:
@@ -648,6 +788,7 @@ public class EasySceneController {
                     weaponImage.setLayoutX(2*960/16);
                     weaponImage.setLayoutY(540/10 + 153);
                     root.getChildren().add(weaponImage);
+                    volleyCannonCount[1] += 1;
                     break;
                     
 
@@ -669,7 +810,7 @@ public class EasySceneController {
                     weaponImage2.setLayoutX(4*960/16);
                     weaponImage2.setLayoutY(4*540/10 + 50);
                     root.getChildren().add(weaponImage2);
-
+                    wallTrapCount[1] += 1;
                     break;
                     
                     
@@ -677,6 +818,7 @@ public class EasySceneController {
                     default:
                         break;
                 }
+                updateWeaponCount();
             
             } catch (InsufficientResourcesException e) {
                 dim.setVisible(true);
@@ -723,12 +865,59 @@ public class EasySceneController {
                 });
 
             } catch (InvalidLaneException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                
+                dim.setVisible(true);
+                Rectangle InvalidLaneRectangle = new Rectangle();
+                InvalidLaneRectangle.setWidth(500);
+                InvalidLaneRectangle.setHeight(300);
+                InvalidLaneRectangle.setLayoutX(960/2 - 250);
+                InvalidLaneRectangle.setLayoutY(540/2-150);
+                InvalidLaneRectangle.setVisible(true);
+                InvalidLaneRectangle.setFill(Color.DARKGRAY);
+                InvalidLaneRectangle.toFront();
+                root.getChildren().add(InvalidLaneRectangle);
+
+                Label InvalidLaneText = new Label("Lane Destroyed!");
+                InvalidLaneText.setId("gameOver");
+                InvalidLaneText.setPrefWidth(450);
+                InvalidLaneText.setPrefHeight(60);
+                InvalidLaneText.setLayoutX(960/2 - 200);
+                InvalidLaneText.setLayoutY(540/2-125);
+                InvalidLaneText.setVisible(true);
+                InvalidLaneText.toFront();
+                root.getChildren().add(InvalidLaneText);    
+                
+                Button back = new Button("Back");
+                back.setId("passturn");
+                back.setPrefWidth(450);
+                back.setPrefHeight(60);
+                back.setLayoutX(960/2 - 200);
+                back.setLayoutY(540/2);
+                back.setVisible(true);
+                back.toFront();
+                root.getChildren().add(back);  
+                
+                back.setOnMouseClicked( new EventHandler<Event>() {
+
+                    @Override
+                    public void handle(Event event) {
+                        dim.setVisible(false);
+                        back.setVisible(false);
+                        InvalidLaneRectangle.setVisible(false);
+                        InvalidLaneText.setVisible(false);
+                    }
+                    
+                    
+                });
+
+                
             }
             }
             
         });
+
+
+
 
         laneRects[2].setOnMouseClicked(new EventHandler<Event>() {
 
@@ -744,7 +933,7 @@ public class EasySceneController {
                 switch (weaponToBuyCode) {
                     
                     case 1: 
-                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Piercing Cannon/Volley Spread Cannon.png").toString());
                     weaponImage.setFitHeight(540/10);
                     weaponImage.setFitWidth(960/16);
                 
@@ -752,6 +941,7 @@ public class EasySceneController {
                     weaponImage.setLayoutX(3*960/16);
                     weaponImage.setLayoutY(7*540/10 - 10);
                     root.getChildren().add(weaponImage);    
+                    piercingCannonCount[2] += 1;
                     break;
                     
                     
@@ -764,6 +954,7 @@ public class EasySceneController {
                     weaponImage.setLayoutX(960/16);
                     weaponImage.setLayoutY(7*540/10 - 10);
                     root.getChildren().add(weaponImage);
+                    sniperCannonCount[2] += 1;
                     break;
 
                     case 3:
@@ -774,6 +965,7 @@ public class EasySceneController {
                     weaponImage.setLayoutX(2*960/16);
                     weaponImage.setLayoutY(7*540/10 - 10);
                     root.getChildren().add(weaponImage);
+                    volleyCannonCount[2] += 1;
                     break;
                     
                     case 4:
@@ -794,6 +986,7 @@ public class EasySceneController {
                     weaponImage2.setLayoutX(4*960/16);
                     weaponImage2.setLayoutY(7*540/10 + 50);
                     root.getChildren().add(weaponImage2);
+                    wallTrapCount[2] += 1;
 
                     break;
 
@@ -801,6 +994,7 @@ public class EasySceneController {
                     default:
                         break;
                 }
+                updateWeaponCount();
 
             } catch (InsufficientResourcesException e) {
                 
@@ -849,9 +1043,52 @@ public class EasySceneController {
 
                 
             } catch (InvalidLaneException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+
+                dim.setVisible(true);
+                Rectangle InvalidLaneRectangle = new Rectangle();
+                InvalidLaneRectangle.setWidth(500);
+                InvalidLaneRectangle.setHeight(300);
+                InvalidLaneRectangle.setLayoutX(960/2 - 250);
+                InvalidLaneRectangle.setLayoutY(540/2-150);
+                InvalidLaneRectangle.setVisible(true);
+                InvalidLaneRectangle.setFill(Color.DARKGRAY);
+                InvalidLaneRectangle.toFront();
+                root.getChildren().add(InvalidLaneRectangle);
+
+                Label InvalidLaneText = new Label("Lane Destroyed!");
+                InvalidLaneText.setId("gameOver");
+                InvalidLaneText.setPrefWidth(450);
+                InvalidLaneText.setPrefHeight(60);
+                InvalidLaneText.setLayoutX(960/2 - 200);
+                InvalidLaneText.setLayoutY(540/2-125);
+                InvalidLaneText.setVisible(true);
+                InvalidLaneText.toFront();
+                root.getChildren().add(InvalidLaneText);    
+                
+                Button back = new Button("Back");
+                back.setId("passturn");
+                back.setPrefWidth(450);
+                back.setPrefHeight(60);
+                back.setLayoutX(960/2 - 200);
+                back.setLayoutY(540/2);
+                back.setVisible(true);
+                back.toFront();
+                root.getChildren().add(back);  
+                
+                back.setOnMouseClicked( new EventHandler<Event>() {
+
+                    @Override
+                    public void handle(Event event) {
+                        dim.setVisible(false);
+                        back.setVisible(false);
+                        InvalidLaneRectangle.setVisible(false);
+                        InvalidLaneText.setVisible(false);
+                    }
+                    
+                    
+                });
+
+                            }
             }
             
         });
@@ -902,9 +1139,10 @@ public class EasySceneController {
         round.setText("Round: " + battle.getNumberOfTurns());
         phase.setText("Phase: " + battle.getBattlePhase());
         score.setText("Score: " + battle.getScore());
-        resources.setText("Resources: " + battle.getResourcesGathered());
+        resources.setText(" " +battle.getResourcesGathered());
         updateTitanImages();
         updateLaneLost();
+        updateWeaponCount();
     }
 
     private static void updateLaneLost(){
@@ -945,6 +1183,29 @@ public class EasySceneController {
                 
                 if(battle.isGameOver()) endGame();
     }
+
+
+
+
+
+    private static void updateWeaponCount(){
+
+        piercingCannonCountLabels[0].setText(piercingCannonCount[0] + "");
+        piercingCannonCountLabels[1].setText(piercingCannonCount[1] + "");
+        piercingCannonCountLabels[2].setText(piercingCannonCount[2] + "");
+        sniperCannonCountLabels[0].setText(sniperCannonCount[0] + "");
+        sniperCannonCountLabels[1].setText(sniperCannonCount[1] + "");
+        sniperCannonCountLabels[2].setText(sniperCannonCount[2] + "");
+        volleyCannonCountLabels[0].setText(volleyCannonCount[0] + "");
+        volleyCannonCountLabels[1].setText(volleyCannonCount[1] + "");
+        volleyCannonCountLabels[2].setText(volleyCannonCount[2] + "");
+        wallTrapCountLabels[0].setText(wallTrapCount[0] + "");
+        wallTrapCountLabels[1].setText(wallTrapCount[1] + "");
+        wallTrapCountLabels[2].setText(wallTrapCount[2] + "");
+        
+        
+    }
+
     private static void endGame() {
         dim.setVisible(true);
         dim.toFront();

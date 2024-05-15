@@ -496,6 +496,7 @@ public class HardSceneController {
                 if(event.getCode() == KeyCode.ESCAPE){
                     weaponToBuyCode = 0;
                     for (Button button : laneRects)  button.setVisible(false);
+                    dim.setVisible(false);
                     
                     purchase.setVisible(false);
                 closePurchase.setVisible(false);
@@ -523,7 +524,7 @@ public class HardSceneController {
 
                     case 1: 
                     //piercing
-                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Volley Spread Cannon/Volley Spread Cannon.png").toString());
+                    weaponImage = new ImageView(getClass().getResource("assets/Weapons/Piercing Cannon/Volley Spread Cannon.png").toString());
                     weaponImage.setFitHeight(540/10 - 10);
                     weaponImage.setFitWidth(960/16 - 10);
                 
@@ -630,8 +631,51 @@ public class HardSceneController {
                 });
 
             } catch (InvalidLaneException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                dim.setVisible(true);
+                Rectangle InvalidLaneRectangle = new Rectangle();
+                InvalidLaneRectangle.setWidth(500);
+                InvalidLaneRectangle.setHeight(300);
+                InvalidLaneRectangle.setLayoutX(960/2 - 250);
+                InvalidLaneRectangle.setLayoutY(540/2-150);
+                InvalidLaneRectangle.setVisible(true);
+                InvalidLaneRectangle.setFill(Color.DARKGRAY);
+                InvalidLaneRectangle.toFront();
+                root.getChildren().add(InvalidLaneRectangle);
+
+                Label InvalidLaneText = new Label("Lane Destroyed!");
+                InvalidLaneText.setId("gameOver");
+                InvalidLaneText.setPrefWidth(450);
+                InvalidLaneText.setPrefHeight(60);
+                InvalidLaneText.setLayoutX(960/2 - 200);
+                InvalidLaneText.setLayoutY(540/2-125);
+                InvalidLaneText.setVisible(true);
+                InvalidLaneText.toFront();
+                root.getChildren().add(InvalidLaneText);    
+                
+                Button back = new Button("Back");
+                back.setId("passturn");
+                back.setPrefWidth(450);
+                back.setPrefHeight(60);
+                back.setLayoutX(960/2 - 200);
+                back.setLayoutY(540/2);
+                back.setVisible(true);
+                back.toFront();
+                root.getChildren().add(back);  
+                
+                back.setOnMouseClicked( new EventHandler<Event>() {
+
+                    @Override
+                    public void handle(Event event) {
+                        dim.setVisible(false);
+                        back.setVisible(false);
+                        InvalidLaneRectangle.setVisible(false);
+                        InvalidLaneText.setVisible(false);
+                    }
+                    
+                    
+                });
+
+                
             }
             }
             
@@ -758,8 +802,52 @@ public class HardSceneController {
                 });
 
             } catch (InvalidLaneException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            
+                dim.setVisible(true);
+                Rectangle InvalidLaneRectangle = new Rectangle();
+                InvalidLaneRectangle.setWidth(500);
+                InvalidLaneRectangle.setHeight(300);
+                InvalidLaneRectangle.setLayoutX(960/2 - 250);
+                InvalidLaneRectangle.setLayoutY(540/2-150);
+                InvalidLaneRectangle.setVisible(true);
+                InvalidLaneRectangle.setFill(Color.DARKGRAY);
+                InvalidLaneRectangle.toFront();
+                root.getChildren().add(InvalidLaneRectangle);
+
+                Label InvalidLaneText = new Label("Lane Destroyed!");
+                InvalidLaneText.setId("gameOver");
+                InvalidLaneText.setPrefWidth(450);
+                InvalidLaneText.setPrefHeight(60);
+                InvalidLaneText.setLayoutX(960/2 - 200);
+                InvalidLaneText.setLayoutY(540/2-125);
+                InvalidLaneText.setVisible(true);
+                InvalidLaneText.toFront();
+                root.getChildren().add(InvalidLaneText);    
+                
+                Button back = new Button("Back");
+                back.setId("passturn");
+                back.setPrefWidth(450);
+                back.setPrefHeight(60);
+                back.setLayoutX(960/2 - 200);
+                back.setLayoutY(540/2);
+                back.setVisible(true);
+                back.toFront();
+                root.getChildren().add(back);  
+                
+                back.setOnMouseClicked( new EventHandler<Event>() {
+
+                    @Override
+                    public void handle(Event event) {
+                        dim.setVisible(false);
+                        back.setVisible(false);
+                        InvalidLaneRectangle.setVisible(false);
+                        InvalidLaneText.setVisible(false);
+                    }
+                    
+                    
+                });
+
+                
             }
             }
             
@@ -886,8 +974,52 @@ public class HardSceneController {
                 });
 
             } catch (InvalidLaneException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            
+                dim.setVisible(true);
+                Rectangle InvalidLaneRectangle = new Rectangle();
+                InvalidLaneRectangle.setWidth(500);
+                InvalidLaneRectangle.setHeight(300);
+                InvalidLaneRectangle.setLayoutX(960/2 - 250);
+                InvalidLaneRectangle.setLayoutY(540/2-150);
+                InvalidLaneRectangle.setVisible(true);
+                InvalidLaneRectangle.setFill(Color.DARKGRAY);
+                InvalidLaneRectangle.toFront();
+                root.getChildren().add(InvalidLaneRectangle);
+
+                Label InvalidLaneText = new Label("Lane Destroyed!");
+                InvalidLaneText.setId("gameOver");
+                InvalidLaneText.setPrefWidth(450);
+                InvalidLaneText.setPrefHeight(60);
+                InvalidLaneText.setLayoutX(960/2 - 200);
+                InvalidLaneText.setLayoutY(540/2-125);
+                InvalidLaneText.setVisible(true);
+                InvalidLaneText.toFront();
+                root.getChildren().add(InvalidLaneText);    
+                
+                Button back = new Button("Back");
+                back.setId("passturn");
+                back.setPrefWidth(450);
+                back.setPrefHeight(60);
+                back.setLayoutX(960/2 - 200);
+                back.setLayoutY(540/2);
+                back.setVisible(true);
+                back.toFront();
+                root.getChildren().add(back);  
+                
+                back.setOnMouseClicked( new EventHandler<Event>() {
+
+                    @Override
+                    public void handle(Event event) {
+                        dim.setVisible(false);
+                        back.setVisible(false);
+                        InvalidLaneRectangle.setVisible(false);
+                        InvalidLaneText.setVisible(false);
+                    }
+                    
+                    
+                });
+
+                
             }
             }
             
@@ -1014,9 +1146,52 @@ public class HardSceneController {
                 });
 
             } catch (InvalidLaneException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+
+                dim.setVisible(true);
+                Rectangle InvalidLaneRectangle = new Rectangle();
+                InvalidLaneRectangle.setWidth(500);
+                InvalidLaneRectangle.setHeight(300);
+                InvalidLaneRectangle.setLayoutX(960/2 - 250);
+                InvalidLaneRectangle.setLayoutY(540/2-150);
+                InvalidLaneRectangle.setVisible(true);
+                InvalidLaneRectangle.setFill(Color.DARKGRAY);
+                InvalidLaneRectangle.toFront();
+                root.getChildren().add(InvalidLaneRectangle);
+
+                Label InvalidLaneText = new Label("Lane Destroyed!");
+                InvalidLaneText.setId("gameOver");
+                InvalidLaneText.setPrefWidth(450);
+                InvalidLaneText.setPrefHeight(60);
+                InvalidLaneText.setLayoutX(960/2 - 200);
+                InvalidLaneText.setLayoutY(540/2-125);
+                InvalidLaneText.setVisible(true);
+                InvalidLaneText.toFront();
+                root.getChildren().add(InvalidLaneText);    
+                
+                Button back = new Button("Back");
+                back.setId("passturn");
+                back.setPrefWidth(450);
+                back.setPrefHeight(60);
+                back.setLayoutX(960/2 - 200);
+                back.setLayoutY(540/2);
+                back.setVisible(true);
+                back.toFront();
+                root.getChildren().add(back);  
+                
+                back.setOnMouseClicked( new EventHandler<Event>() {
+
+                    @Override
+                    public void handle(Event event) {
+                        dim.setVisible(false);
+                        back.setVisible(false);
+                        InvalidLaneRectangle.setVisible(false);
+                        InvalidLaneText.setVisible(false);
+                    }
+                    
+                    
+                });
+
+                            }
             }
             
         });
@@ -1142,8 +1317,52 @@ public class HardSceneController {
                 });
 
             } catch (InvalidLaneException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+             
+                dim.setVisible(true);
+                Rectangle InvalidLaneRectangle = new Rectangle();
+                InvalidLaneRectangle.setWidth(500);
+                InvalidLaneRectangle.setHeight(300);
+                InvalidLaneRectangle.setLayoutX(960/2 - 250);
+                InvalidLaneRectangle.setLayoutY(540/2-150);
+                InvalidLaneRectangle.setVisible(true);
+                InvalidLaneRectangle.setFill(Color.DARKGRAY);
+                InvalidLaneRectangle.toFront();
+                root.getChildren().add(InvalidLaneRectangle);
+
+                Label InvalidLaneText = new Label("Lane Destroyed!");
+                InvalidLaneText.setId("gameOver");
+                InvalidLaneText.setPrefWidth(450);
+                InvalidLaneText.setPrefHeight(60);
+                InvalidLaneText.setLayoutX(960/2 - 200);
+                InvalidLaneText.setLayoutY(540/2-125);
+                InvalidLaneText.setVisible(true);
+                InvalidLaneText.toFront();
+                root.getChildren().add(InvalidLaneText);    
+                
+                Button back = new Button("Back");
+                back.setId("passturn");
+                back.setPrefWidth(450);
+                back.setPrefHeight(60);
+                back.setLayoutX(960/2 - 200);
+                back.setLayoutY(540/2);
+                back.setVisible(true);
+                back.toFront();
+                root.getChildren().add(back);  
+                
+                back.setOnMouseClicked( new EventHandler<Event>() {
+
+                    @Override
+                    public void handle(Event event) {
+                        dim.setVisible(false);
+                        back.setVisible(false);
+                        InvalidLaneRectangle.setVisible(false);
+                        InvalidLaneText.setVisible(false);
+                    }
+                    
+                    
+                });
+
+                
             }
             }
             
