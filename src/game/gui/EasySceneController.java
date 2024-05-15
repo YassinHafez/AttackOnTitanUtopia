@@ -68,6 +68,8 @@ public class EasySceneController {
     private static Label[] volleyCannonCountLabels = new Label[3];
     private static Label[] wallTrapCountLabels = new Label[3];
 
+    private static ProgressBar[] wallHealthBars = new ProgressBar[3];
+
     public void startEasy() throws IOException{
 
         battle = new Battle(0, 0, 100, 3, 250);
@@ -187,7 +189,7 @@ public class EasySceneController {
 
         score = new Label("Score: " + battle.getScore());
         score.setId("score");
-        score.setLayoutX(20);
+        score.setLayoutX(280);
         score.setLayoutY(-5);
         score.setPrefHeight(30);
         score.setPrefWidth(800);
@@ -196,7 +198,7 @@ public class EasySceneController {
 
 
         ImageView resourcePic = new ImageView(getClass().getResource("assets/Images/diamond.png").toString());
-        resourcePic.setLayoutX(230);
+        resourcePic.setLayoutX(575);
         resourcePic.setLayoutY(15);
         resourcePic.setScaleX(3);
         resourcePic.setScaleY(3);
@@ -205,7 +207,7 @@ public class EasySceneController {
 
         resources = new Label( " " + battle.getResourcesGathered());
         resources.setId("resources");
-        resources.setLayoutX(250);
+        resources.setLayoutX(600);
         resources.setLayoutY(-5);
         resources.setPrefHeight(30);
         resources.setPrefWidth(800);
@@ -214,7 +216,7 @@ public class EasySceneController {
 
         round = new Label("Round: " + battle.getNumberOfTurns());
         round.setId("round");
-        round.setLayoutX(600);
+        round.setLayoutX(750);
         round.setLayoutY(-5);
         round.setPrefHeight(30);
         round.setPrefWidth(800);
@@ -538,7 +540,7 @@ public class EasySceneController {
 
 
 
-        laneRects[0].setOnMouseClicked(new EventHandler<Event>() {
+         laneRects[0].setOnMouseClicked(new EventHandler<Event>() {
 
             @Override
             public void handle(Event event) {
@@ -565,8 +567,8 @@ public class EasySceneController {
                         piercingCannonCountLabels[0].setVisible(true);
                     }
 
-                    piercingCannonCountLabels[0].setLayoutX(3*960/16 + 20);
-                    piercingCannonCountLabels[0].setLayoutY(540/10 - 20);
+                    piercingCannonCountLabels[0].setLayoutX(weaponImage.getLayoutX()+ 20);
+                    piercingCannonCountLabels[0].setLayoutY(weaponImage.getLayoutY()- 45);
                     piercingCannonCountLabels[0].setId("score");
                     piercingCannonCountLabels[0].setPrefHeight(20);
                     piercingCannonCountLabels[0].setPrefWidth(20);
@@ -584,13 +586,16 @@ public class EasySceneController {
                     sniperCannonCount[0]+=1;
                     root.getChildren().add(weaponImage);
 
-                    if(sniperCannonCount[0] == 0){
+                    if(sniperCannonCount[0] == 1){
                         sniperCannonCountLabels[0].setVisible(true);
                     }
 
-                    sniperCannonCountLabels[0].setLayoutX(960/16);
-                    sniperCannonCountLabels[0].setLayoutY(540/10);
-                    
+                    sniperCannonCountLabels[0].setLayoutX(weaponImage.getLayoutX()+ 20);
+                    sniperCannonCountLabels[0].setLayoutY(weaponImage.getLayoutY()- 45);
+                    sniperCannonCountLabels[0].setId("score");
+                    sniperCannonCountLabels[0].setPrefHeight(20);
+                    sniperCannonCountLabels[0].setPrefWidth(20);
+
                     break;
 
                     case 3:
@@ -604,9 +609,16 @@ public class EasySceneController {
                     volleyCannonCount[0]+=1;
                     root.getChildren().add(weaponImage);
 
-                    if(piercingCannonCount[0] == 0){
+                    if(volleyCannonCount[0] == 1){
                         volleyCannonCountLabels[0].setVisible(true);
                     }
+
+                    volleyCannonCountLabels[0].setLayoutX(weaponImage.getLayoutX()+ 20);
+                    volleyCannonCountLabels[0].setLayoutY(weaponImage.getLayoutY()- 45);
+                    volleyCannonCountLabels[0].setId("score");
+                    volleyCannonCountLabels[0].setPrefHeight(20);
+                    volleyCannonCountLabels[0].setPrefWidth(20);
+
 
                     break;
 
@@ -632,9 +644,16 @@ public class EasySceneController {
                     root.getChildren().add(weaponImage2);
                     wallTrapCount[0]+=1;
 
-                    if(piercingCannonCount[0] == 0){
+                    if(wallTrapCount[0] == 1){
                         wallTrapCountLabels[0].setVisible(true);
                     }
+
+                    wallTrapCountLabels[0].setLayoutX(weaponImage.getLayoutX());
+                    wallTrapCountLabels[0].setLayoutY(weaponImage.getLayoutY()- 50);
+                    wallTrapCountLabels[0].setId("score");
+                    wallTrapCountLabels[0].setPrefHeight(20);
+                    wallTrapCountLabels[0].setPrefWidth(20);
+
 
                     break;
                 
@@ -761,9 +780,20 @@ public class EasySceneController {
                 
                     weaponImage.setRotate(45);
                     weaponImage.setLayoutX(3*960/16);
-                    weaponImage.setLayoutY(4*540/10 - 10);
+                    weaponImage.setLayoutY(4*540/10 +25);
                     root.getChildren().add(weaponImage);  
                     piercingCannonCount[1] += 1;
+
+                    if(piercingCannonCount[1] == 1){
+                        piercingCannonCountLabels[1].setVisible(true);
+                    }
+
+                    piercingCannonCountLabels[1].setLayoutX(weaponImage.getLayoutX()+ 20);
+                    piercingCannonCountLabels[1].setLayoutY(weaponImage.getLayoutY()- 45);
+                    piercingCannonCountLabels[1].setId("score");
+                    piercingCannonCountLabels[1].setPrefHeight(20);
+                    piercingCannonCountLabels[1].setPrefWidth(20);
+
 
                     break;
 
@@ -774,9 +804,20 @@ public class EasySceneController {
                     weaponImage.setRotationAxis(Rotate.Y_AXIS);
                     weaponImage.setRotate(180);
                     weaponImage.setLayoutX(960/16);
-                    weaponImage.setLayoutY(4*540/10 - 10);
+                    weaponImage.setLayoutY(4*540/10 +25);
                     root.getChildren().add(weaponImage);
                     sniperCannonCount[1] += 1;
+
+                    if(sniperCannonCount[1] == 1){
+                        sniperCannonCountLabels[1].setVisible(true);
+                    }
+
+                    sniperCannonCountLabels[1].setLayoutX(weaponImage.getLayoutX()+ 20);
+                    sniperCannonCountLabels[1].setLayoutY(weaponImage.getLayoutY()- 45);
+                    sniperCannonCountLabels[1].setId("score");
+                    sniperCannonCountLabels[1].setPrefHeight(20);
+                    sniperCannonCountLabels[1].setPrefWidth(20);
+
                     break;
 
                     case 3:
@@ -786,9 +827,20 @@ public class EasySceneController {
                 
                     weaponImage.setRotate(45);
                     weaponImage.setLayoutX(2*960/16);
-                    weaponImage.setLayoutY(540/10 + 153);
+                    weaponImage.setLayoutY(4*540/10 +25);
                     root.getChildren().add(weaponImage);
                     volleyCannonCount[1] += 1;
+
+                    if(volleyCannonCount[1] == 1){
+                        volleyCannonCountLabels[1].setVisible(true);
+                    }
+
+                    volleyCannonCountLabels[1].setLayoutX(weaponImage.getLayoutX()+ 20);
+                    volleyCannonCountLabels[1].setLayoutY(weaponImage.getLayoutY()- 45);
+                    volleyCannonCountLabels[1].setId("score");
+                    volleyCannonCountLabels[1].setPrefHeight(20);
+                    volleyCannonCountLabels[1].setPrefWidth(20);
+
                     break;
                     
 
@@ -811,6 +863,17 @@ public class EasySceneController {
                     weaponImage2.setLayoutY(4*540/10 + 50);
                     root.getChildren().add(weaponImage2);
                     wallTrapCount[1] += 1;
+
+                    if(wallTrapCount[1] == 1){
+                        wallTrapCountLabels[1].setVisible(true);
+                    }
+
+                    wallTrapCountLabels[1].setLayoutX(weaponImage.getLayoutX());
+                    wallTrapCountLabels[1].setLayoutY(weaponImage.getLayoutY()- 50);
+                    wallTrapCountLabels[1].setId("score");
+                    wallTrapCountLabels[1].setPrefHeight(20);
+                    wallTrapCountLabels[1].setPrefWidth(20);
+
                     break;
                     
                     
@@ -939,9 +1002,20 @@ public class EasySceneController {
                 
                     weaponImage.setRotate(45);
                     weaponImage.setLayoutX(3*960/16);
-                    weaponImage.setLayoutY(7*540/10 - 10);
+                    weaponImage.setLayoutY(7*540/10 +25);
                     root.getChildren().add(weaponImage);    
                     piercingCannonCount[2] += 1;
+
+                    if(piercingCannonCount[2] == 1){
+                        piercingCannonCountLabels[2].setVisible(true);
+                    }
+
+                    piercingCannonCountLabels[2].setLayoutX(weaponImage.getLayoutX()+ 20);
+                    piercingCannonCountLabels[2].setLayoutY(weaponImage.getLayoutY()- 45);
+                    piercingCannonCountLabels[2].setId("score");
+                    piercingCannonCountLabels[2].setPrefHeight(20);
+                    piercingCannonCountLabels[2].setPrefWidth(20);
+
                     break;
                     
                     
@@ -952,9 +1026,20 @@ public class EasySceneController {
                     weaponImage.setRotationAxis(Rotate.Y_AXIS);
                     weaponImage.setRotate(180);
                     weaponImage.setLayoutX(960/16);
-                    weaponImage.setLayoutY(7*540/10 - 10);
+                    weaponImage.setLayoutY(7*540/10 +25);
                     root.getChildren().add(weaponImage);
                     sniperCannonCount[2] += 1;
+
+                    if(sniperCannonCount[2] == 1){
+                        sniperCannonCountLabels[2].setVisible(true);
+                    }
+
+                    sniperCannonCountLabels[2].setLayoutX(weaponImage.getLayoutX()+ 20);
+                    sniperCannonCountLabels[2].setLayoutY(weaponImage.getLayoutY()- 45);
+                    sniperCannonCountLabels[2].setId("score");
+                    sniperCannonCountLabels[2].setPrefHeight(20);
+                    sniperCannonCountLabels[2].setPrefWidth(20);
+
                     break;
 
                     case 3:
@@ -963,9 +1048,20 @@ public class EasySceneController {
                     weaponImage.setFitWidth(960/16);
                     weaponImage.setRotate(45);
                     weaponImage.setLayoutX(2*960/16);
-                    weaponImage.setLayoutY(7*540/10 - 10);
+                    weaponImage.setLayoutY(7*540/10 +25);
                     root.getChildren().add(weaponImage);
                     volleyCannonCount[2] += 1;
+
+                    if(volleyCannonCount[2] == 1){
+                        volleyCannonCountLabels[2].setVisible(true);
+                    }
+
+                    volleyCannonCountLabels[2].setLayoutX(weaponImage.getLayoutX()+ 20);
+                    volleyCannonCountLabels[2].setLayoutY(weaponImage.getLayoutY()- 45);
+                    volleyCannonCountLabels[2].setId("score");
+                    volleyCannonCountLabels[2].setPrefHeight(20);
+                    volleyCannonCountLabels[2].setPrefWidth(20);
+
                     break;
                     
                     case 4:
@@ -987,6 +1083,17 @@ public class EasySceneController {
                     weaponImage2.setLayoutY(7*540/10 + 50);
                     root.getChildren().add(weaponImage2);
                     wallTrapCount[2] += 1;
+
+                    if(wallTrapCount[2] == 1){
+                        wallTrapCountLabels[2].setVisible(true);
+                    }
+
+                    wallTrapCountLabels[2].setLayoutX(weaponImage.getLayoutX());
+                    wallTrapCountLabels[2].setLayoutY(weaponImage.getLayoutY()- 50);
+                    wallTrapCountLabels[2].setId("score");
+                    wallTrapCountLabels[2].setPrefHeight(20);
+                    wallTrapCountLabels[2].setPrefWidth(20);
+
 
                     break;
 
@@ -1093,6 +1200,26 @@ public class EasySceneController {
             
         });
 
+
+         wallHealthBars[0] = new ProgressBar(1);
+         wallHealthBars[1] = new ProgressBar(1);
+         wallHealthBars[2] = new ProgressBar(1);
+
+         for (ProgressBar progressBar : wallHealthBars) {
+            progressBar.setVisible(true);
+            root.getChildren().add(progressBar);
+         }
+         
+         wallHealthBars[0].setLayoutX(70);
+         wallHealthBars[0].setLayoutY(25);
+
+         wallHealthBars[1].setLayoutX(70);
+         wallHealthBars[1].setLayoutY(188);
+
+         wallHealthBars[2].setLayoutX(70);
+         wallHealthBars[2].setLayoutY(350);
+         
+
         
         for (int i = 0; i < laneLost0.length; i++) {
             ImageView laneLost = new ImageView(getClass().getResource("assets/Images/laneLost.png").toString());
@@ -1143,6 +1270,14 @@ public class EasySceneController {
         updateTitanImages();
         updateLaneLost();
         updateWeaponCount();
+        updateWallHealth();
+    }
+
+    
+    private static void updateWallHealth() {
+        for(int i =0; i<3;i++){
+            wallHealthBars[i].setProgress((lanes[i].getLaneWall().getCurrentHealth())/(10000));
+        }
     }
 
     private static void updateLaneLost(){
