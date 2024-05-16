@@ -169,30 +169,50 @@ public class EasySceneController {
             }
         }
 
-        Button passTurn = new Button("Pass Turn");
+        Button quit = new Button("X");
+        quit.setId("passTurn");
+        quit.setLayoutX(-7);
+        quit.setLayoutY(-13);
+        quit.setOnMouseClicked(new EventHandler<Event>() {
+
+            @Override
+            public void handle(Event event) {
+                Main.stage.getScene().setRoot(Main.mainMenuRoot);
+            }
+            
+        });
+        
+        
+        root.getChildren().add(quit);
+        quit.setVisible(true);
+
+
+        ImageView passTurn = new ImageView(getClass().getResource("assets/Images/PassTurn.png").toString());
         passTurn.setId("passTurn");
-        passTurn.setLayoutX(650);
-        passTurn.setLayoutY(360);
-        passTurn.setPrefHeight(300);
-        passTurn.setPrefWidth(275);
+        passTurn.setLayoutX(750);
+        passTurn.setLayoutY(415);
+        passTurn.setScaleX(0.18);
+        passTurn.setScaleY(0.18);
         root.getChildren().add(passTurn);
         passTurn.setVisible(true);
 
-        Button purchaseWeapon = new Button("Purchase Weapon");
+        ImageView purchaseWeapon = new ImageView( getClass().getResource("assets/Images/storeIcon.png").toString());
         purchaseWeapon.setId("purchaseWeapon");
-        purchaseWeapon.setLayoutX(300);
-        purchaseWeapon.setLayoutY(360);
-        purchaseWeapon.setPrefHeight(300);
-        purchaseWeapon.setPrefWidth(400);
+        purchaseWeapon.setLayoutX(650);
+        purchaseWeapon.setLayoutY(400);
+        purchaseWeapon.setScaleX(0.18);
+        purchaseWeapon.setScaleY(0.18);
         root.getChildren().add(purchaseWeapon);
         purchaseWeapon.setVisible(true);
 
+        
+
         score = new Label("Score: " + battle.getScore());
         score.setId("score");
-        score.setLayoutX(280);
-        score.setLayoutY(-5);
+        score.setLayoutX(375);
+        score.setLayoutY(480);
         score.setPrefHeight(30);
-        score.setPrefWidth(800);
+        score.setPrefWidth(300);
         root.getChildren().add(score);
         score.setVisible(true);
 
@@ -228,7 +248,7 @@ public class EasySceneController {
         phase.setLayoutX(10);
         phase.setLayoutY(480);
         phase.setPrefHeight(30);
-        phase.setPrefWidth(300);
+        phase.setPrefWidth(500);
         root.getChildren().add(phase);
         phase.setVisible(true);
 
@@ -249,18 +269,18 @@ public class EasySceneController {
         purchase.toFront();
         root.getChildren().add(purchase);
 
-        Button closePurchase = new Button("X");
-        closePurchase.setPrefWidth(20);
-        closePurchase.setPrefHeight(20);
-        closePurchase.setLayoutX(707);
-        closePurchase.setLayoutY(120);
+        ImageView closePurchase = new ImageView(getClass().getResource("assets/Images/laneLost.png").toString());
+        closePurchase.setScaleX(0.08);
+        closePurchase.setScaleY(0.08);
+        closePurchase.setLayoutX(400);
+        closePurchase.setLayoutY(-150);
         closePurchase.setVisible(false);
         closePurchase.toFront();
         root.getChildren().add(closePurchase);
 
         Button sniperCannon = new Button("Buy Sniper Cannon: 25 Resources");
         sniperCannon.setId("menuButton");
-        sniperCannon.setPrefWidth(450);
+        sniperCannon.setPrefWidth(350);
         sniperCannon.setPrefHeight(60);
         sniperCannon.setLayoutX(960/2 - 250 + 25);
         sniperCannon.setLayoutY(540/2-150 + 30);
@@ -270,10 +290,10 @@ public class EasySceneController {
 
         Button piercingCannon = new Button("Buy Piecring Cannon: 25 Resources");
         piercingCannon.setId("menuButton");
-        piercingCannon.setPrefWidth(450);
+        piercingCannon.setPrefWidth(350);
         piercingCannon.setPrefHeight(60);
         piercingCannon.setLayoutX(960/2 - 250 + 25);
-        piercingCannon.setLayoutY(540/2-150 + 90);
+        piercingCannon.setLayoutY(540/2-150 + 150);
         piercingCannon.setVisible(false);
         piercingCannon.toFront();
         root.getChildren().add(piercingCannon);
@@ -283,14 +303,14 @@ public class EasySceneController {
         volleySpread.setPrefWidth(450);
         volleySpread.setPrefHeight(60);
         volleySpread.setLayoutX(960/2 - 250 + 25);
-        volleySpread.setLayoutY(540/2-150 + 150);
+        volleySpread.setLayoutY(540/2-150 + 90);
         volleySpread.setVisible(false);
         volleySpread.toFront();
         root.getChildren().add(volleySpread);
 
         Button wallTrap = new Button("Buy Wall Trap: 75 Resources");
         wallTrap.setId("menuButton");
-        wallTrap.setPrefWidth(450);
+        wallTrap.setPrefWidth(350);
         wallTrap.setPrefHeight(60);
         wallTrap.setLayoutX(960/2 - 250 + 25);
         wallTrap.setLayoutY(540/2-150 + 210);
@@ -1414,7 +1434,10 @@ public class EasySceneController {
                             image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/ArmoredTitanFrames/tile000.png").toString()));
                             break;
                         case 4:
-                            image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/ColossalFrames/ready_1.png").toString()));
+                            image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/ColossalFrames/Colossal.png").toString()));
+                            break;
+                        case 2:
+                            image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/Abnormal/abnormal.png").toString()));
                             break;
                         default:
                             image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/AnimationFrames/Abnormal/Idle/0.png").toString()));
@@ -1475,7 +1498,7 @@ public class EasySceneController {
                     for (Titan t : titanImages.keySet()) {
                        
                         ImageView image = titanImages.get(t).getTitanImage();
-                        image.setLayoutX(t.getDistance()*6 + 275);
+                        image.setLayoutX(t.getDistance()*6 + 275   );
                         titanImages.get(t).getTitanHealth().setProgress(t.getCurrentHealth()/(float)t.getBaseHealth());
                         titanImages.get(t).getTitanHealth().setLayoutX(image.getLayoutX());
                         

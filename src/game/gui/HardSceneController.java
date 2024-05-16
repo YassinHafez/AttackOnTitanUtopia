@@ -58,11 +58,32 @@ public class HardSceneController {
     public static ImageView[] laneLost2 = new ImageView[6];
     public static ImageView[] laneLost3 = new ImageView[6];
     public static ImageView[] laneLost4 = new ImageView[6];
+    public static ProgressBar wallHealth0 = new ProgressBar(1);
+    public static ProgressBar wallHealth1 = new ProgressBar(1);
+    public static ProgressBar wallHealth2 = new ProgressBar(1);
+    public static ProgressBar wallHealth3 = new ProgressBar(1);
+    public static ProgressBar wallHealth4 = new ProgressBar(1);
 
     public void startHard() throws IOException{
 
         battle = new Battle(0, 0, 100, 5, 125);
         
+
+        wallHealth0.setLayoutX(100);
+        wallHealth1.setLayoutX(100);
+        wallHealth2.setLayoutX(100);
+        wallHealth3.setLayoutX(100);
+        wallHealth4.setLayoutX(100);
+
+        wallHealth0.setLayoutY(50);
+        wallHealth1.setLayoutY(150);
+        wallHealth2.setLayoutY(250);
+        wallHealth3.setLayoutY(350);
+        wallHealth4.setLayoutY(450);
+
+     
+
+
         wallTrap.setFitHeight(100);
         wallTrap.setFitHeight(100);
         wallTrap.setLayoutX(200);
@@ -181,36 +202,60 @@ public class HardSceneController {
             }
         }
 
-        Button passTurn = new Button("Pass Turn");
+        Button quit = new Button("X");
+        quit.setId("passTurn");
+        quit.setLayoutX(-7);
+        quit.setLayoutY(-20);
+        quit.setOnMouseClicked(new EventHandler<Event>() {
+
+            @Override
+            public void handle(Event event) {
+                Main.stage.getScene().setRoot(Main.mainMenuRoot);
+            }
+            
+        });
+        
+        
+        root.getChildren().add(quit);
+        quit.setVisible(true);
+
+        ImageView passTurn = new ImageView(getClass().getResource("assets/Images/PassTurn.png").toString());
         passTurn.setId("passTurn");
-        passTurn.setLayoutX(650);
-        passTurn.setLayoutY(360);
-        passTurn.setPrefHeight(300);
-        passTurn.setPrefWidth(275);
+        passTurn.setLayoutX(750);
+        passTurn.setLayoutY(415);
+        passTurn.setScaleX(0.18);
+        passTurn.setScaleY(0.18);
         root.getChildren().add(passTurn);
         passTurn.setVisible(true);
 
-        Button purchaseWeapon = new Button("Purchase Weapon");
+        ImageView purchaseWeapon = new ImageView( getClass().getResource("assets/Images/storeIcon.png").toString());
         purchaseWeapon.setId("purchaseWeapon");
-        purchaseWeapon.setLayoutX(300);
-        purchaseWeapon.setLayoutY(360);
-        purchaseWeapon.setPrefHeight(300);
-        purchaseWeapon.setPrefWidth(400);
+        purchaseWeapon.setLayoutX(650);
+        purchaseWeapon.setLayoutY(400);
+        purchaseWeapon.setScaleX(0.18);
+        purchaseWeapon.setScaleY(0.18);
         root.getChildren().add(purchaseWeapon);
         purchaseWeapon.setVisible(true);
 
+        ImageView resourcePic = new ImageView(getClass().getResource("assets/Images/diamond.png").toString());
+        resourcePic.setLayoutX(375);
+        resourcePic.setLayoutY(15);
+        resourcePic.setScaleX(3);
+        resourcePic.setScaleY(3);
+        root.getChildren().add(resourcePic);
+
         score = new Label("Score: " + battle.getScore());
         score.setId("score");
-        score.setLayoutX(20);
+        score.setLayoutX(150);
         score.setLayoutY(-5);
         score.setPrefHeight(30);
         score.setPrefWidth(800);
         root.getChildren().add(score);
         score.setVisible(true);
 
-        resources = new Label("Resources: " + battle.getResourcesGathered());
+        resources = new Label(" " + battle.getResourcesGathered());
         resources.setId("resources");
-        resources.setLayoutX(250);
+        resources.setLayoutX(400);
         resources.setLayoutY(-5);
         resources.setPrefHeight(30);
         resources.setPrefWidth(800);
@@ -231,7 +276,7 @@ public class HardSceneController {
         phase.setLayoutX(10);
         phase.setLayoutY(480);
         phase.setPrefHeight(30);
-        phase.setPrefWidth(300);
+        phase.setPrefWidth(500);
         root.getChildren().add(phase);
         phase.setVisible(true);
 
@@ -1427,6 +1472,13 @@ public class HardSceneController {
             root.getChildren().add(laneLost4[i]);
         }
 
+        root.getChildren().add(wallHealth0);
+        root.getChildren().add(wallHealth1);
+        root.getChildren().add(wallHealth2);
+        root.getChildren().add(wallHealth3);
+        root.getChildren().add(wallHealth4);
+
+
         
 
 
@@ -1437,6 +1489,17 @@ public class HardSceneController {
         phase.setText("Phase: " + battle.getBattlePhase());
         score.setText("Score: " + battle.getScore());
         resources.setText("Resources: " + battle.getResourcesGathered());
+        wallHealth0.setProgress(lanes[0].getLaneWall().getCurrentHealth() / (float)lanes[0].getLaneWall().getBaseHealth());
+        wallHealth1.setProgress(lanes[1].getLaneWall().getCurrentHealth() / (float)lanes[1].getLaneWall().getBaseHealth());
+        wallHealth2.setProgress(lanes[2].getLaneWall().getCurrentHealth() / (float)lanes[2].getLaneWall().getBaseHealth());
+        wallHealth3.setProgress(lanes[3].getLaneWall().getCurrentHealth() / (float)lanes[3].getLaneWall().getBaseHealth());
+        wallHealth4.setProgress(lanes[4].getLaneWall().getCurrentHealth() / (float)lanes[4].getLaneWall().getBaseHealth());
+
+        
+
+        
+
+
         updateTitanImages();
         updateLaneLost();
     }
@@ -1576,7 +1639,24 @@ public class HardSceneController {
 
 
                 if(!titanImages.containsKey(titan)){
-                    ImageView image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/AnimationFrames/Abnormal/Idle/0.png").toString()));
+                    ImageView image;
+                    
+
+                    switch(titan.getDangerLevel()){
+                        case 3:
+                            image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/ArmoredTitanFrames/tile000.png").toString()));
+                            break;
+                        case 4:
+                            image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/ColossalFrames/Colossal.png").toString()));
+                            break;
+                        case 2:
+                            image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/Abnormal/abnormal.png").toString()));
+                            break;
+                        default:
+                            image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/AnimationFrames/Abnormal/Idle/0.png").toString()));
+                            break;
+                    }
+                    
                     image.setRotationAxis(Rotate.Y_AXIS);
                     image.setRotate(180);
                     image.setFitWidth(70);

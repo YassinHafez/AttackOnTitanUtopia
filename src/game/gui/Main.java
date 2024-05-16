@@ -17,11 +17,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -40,6 +43,7 @@ public class Main extends Application{
     public static MediaView video;
     public static boolean isMuted = false;
     public static String keyPresses = "";
+    public static Rectangle dim = new Rectangle();
 
     public static void main(String[] args) {
         launch(args);
@@ -143,6 +147,45 @@ public class Main extends Application{
         mainMenuRoot.getChildren().add(backToMain);
         backToMain.setVisible(false);
         allButtons.add(backToMain);
+
+        ImageView instruction = new ImageView(new Image(getClass().getResource("assets/Images/instruction.png").toString()));
+        instruction.setId("quit");
+        instruction.setLayoutX(-40);
+        instruction.setLayoutY(-80);
+        instruction.setScaleX(0.2);
+        instruction.setScaleY(0.2);
+        mainMenuRoot.getChildren().add(instruction);
+        instruction.setVisible(true);
+
+        dim = new Rectangle(1000, 550);
+        dim.setFill(Color.BLACK);
+        dim.setOpacity(0.6);
+        mainMenuRoot.getChildren().add(dim);
+        dim.setVisible(false);
+        
+        instruction.setOnMouseClicked(new EventHandler<Event>() {
+
+            @Override
+            public void handle(Event event) {
+                
+                
+                dim.setVisible(true);
+                dim.toFront();
+
+                Rectangle instructionWindow = new Rectangle(600,400);
+                instructionWindow.setLayoutX(480-300);
+                instructionWindow.setLayoutY(270-200);
+                instructionWindow.setFill(Color.GREY);
+                mainMenuRoot.getChildren().add(instructionWindow);
+
+                Label instructionText = new Label("Purchase Weapons to defend lanes \nGet Resources by Killing Titans\nSurvive as long as possible");
+                instructionText.setId("instruction");
+                instructionText.setLayoutX(200);
+                instructionText.setLayoutY(200);
+                mainMenuRoot.getChildren().add(instructionText);
+            }
+            
+        });
         
 
         Runnable musicRunnable = new Runnable() {
