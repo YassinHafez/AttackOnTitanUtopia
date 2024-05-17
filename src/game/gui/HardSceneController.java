@@ -1488,7 +1488,7 @@ public class HardSceneController {
         round.setText("Round: " + battle.getNumberOfTurns());
         phase.setText("Phase: " + battle.getBattlePhase());
         score.setText("Score: " + battle.getScore());
-        resources.setText("Resources: " + battle.getResourcesGathered());
+        resources.setText("" + battle.getResourcesGathered());
         wallHealth0.setProgress(lanes[0].getLaneWall().getCurrentHealth() / (float)lanes[0].getLaneWall().getBaseHealth());
         wallHealth1.setProgress(lanes[1].getLaneWall().getCurrentHealth() / (float)lanes[1].getLaneWall().getBaseHealth());
         wallHealth2.setProgress(lanes[2].getLaneWall().getCurrentHealth() / (float)lanes[2].getLaneWall().getBaseHealth());
