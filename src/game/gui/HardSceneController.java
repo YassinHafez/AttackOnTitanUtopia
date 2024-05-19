@@ -63,23 +63,49 @@ public class HardSceneController {
     public static ProgressBar wallHealth2 = new ProgressBar(1);
     public static ProgressBar wallHealth3 = new ProgressBar(1);
     public static ProgressBar wallHealth4 = new ProgressBar(1);
+    public static Label[] dangerLevelLabels = new Label[5];
 
     public void startHard() throws IOException{
 
         battle = new Battle(0, 0, 100, 5, 125);
         
 
+        dangerLevelLabels[0] = new Label("Danger:");
+        dangerLevelLabels[1] = new Label("Danger:");
+        dangerLevelLabels[2] = new Label("Danger:");
+        dangerLevelLabels[3] = new Label("Danger:");
+        dangerLevelLabels[4] = new Label("Danger:");
+        
+        
         wallHealth0.setLayoutX(100);
         wallHealth1.setLayoutX(100);
         wallHealth2.setLayoutX(100);
         wallHealth3.setLayoutX(100);
         wallHealth4.setLayoutX(100);
+        dangerLevelLabels[0].setLayoutX(100);
+        dangerLevelLabels[1].setLayoutX(100);
+        dangerLevelLabels[2].setLayoutX(100);
+        dangerLevelLabels[3].setLayoutX(100);
+        dangerLevelLabels[4].setLayoutX(100);
+
 
         wallHealth0.setLayoutY(50);
         wallHealth1.setLayoutY(150);
         wallHealth2.setLayoutY(250);
         wallHealth3.setLayoutY(350);
         wallHealth4.setLayoutY(450);
+        dangerLevelLabels[0].setLayoutY(20);
+        dangerLevelLabels[1].setLayoutY(120);
+        dangerLevelLabels[2].setLayoutY(220);
+        dangerLevelLabels[3].setLayoutY(320);
+        dangerLevelLabels[4].setLayoutY(420);
+
+        root.getChildren().add(dangerLevelLabels[0]);
+        root.getChildren().add(dangerLevelLabels[1]);
+        root.getChildren().add(dangerLevelLabels[2]);
+        root.getChildren().add(dangerLevelLabels[3]);
+        root.getChildren().add(dangerLevelLabels[4]);
+
 
      
 
@@ -246,7 +272,7 @@ public class HardSceneController {
 
         score = new Label("Score: " + battle.getScore());
         score.setId("score");
-        score.setLayoutX(150);
+        score.setLayoutX(170);
         score.setLayoutY(-5);
         score.setPrefHeight(30);
         score.setPrefWidth(800);
@@ -288,59 +314,59 @@ public class HardSceneController {
         dim.toFront();
 
         Rectangle purchase = new Rectangle();
-        purchase.setWidth(500);
+        purchase.setWidth(800);
         purchase.setHeight(300);
-        purchase.setLayoutX(960/2 - 250);
+        purchase.setLayoutX(960/2 - 400);
         purchase.setLayoutY(540/2-150);
         purchase.setVisible(false);
         purchase.setFill(Color.DARKGRAY);
         purchase.toFront();
         root.getChildren().add(purchase);
 
-        Button closePurchase = new Button("X");
-        closePurchase.setPrefWidth(20);
-        closePurchase.setPrefHeight(20);
-        closePurchase.setLayoutX(707);
-        closePurchase.setLayoutY(120);
+        ImageView closePurchase = new ImageView(getClass().getResource("assets/Images/laneLost.png").toString());
+        closePurchase.setScaleX(0.08);
+        closePurchase.setScaleY(0.08);
+        closePurchase.setLayoutX(550);
+        closePurchase.setLayoutY(-150);
         closePurchase.setVisible(false);
         closePurchase.toFront();
         root.getChildren().add(closePurchase);
 
-        Button sniperCannon = new Button("Buy Sniper Cannon: 25 Resources");
+        Button sniperCannon = new Button("Buy Long Range Spear (Sniper Cannon - 35 DMG): 25 Resources");
         sniperCannon.setId("menuButton");
-        sniperCannon.setPrefWidth(450);
+        sniperCannon.setPrefWidth(700);
         sniperCannon.setPrefHeight(60);
-        sniperCannon.setLayoutX(960/2 - 250 + 25);
+        sniperCannon.setLayoutX(960/2 - 400 + 25);
         sniperCannon.setLayoutY(540/2-150 + 30);
         sniperCannon.setVisible(false);
         sniperCannon.toFront();
         root.getChildren().add(sniperCannon);
 
-        Button piercingCannon = new Button("Buy Piecring Cannon: 25 Resources");
+        Button piercingCannon = new Button("Buy Anti-Titan Shell (Piercing Cannon - 25 DMG): 25 Resources");
         piercingCannon.setId("menuButton");
-        piercingCannon.setPrefWidth(450);
+        piercingCannon.setPrefWidth(700);
         piercingCannon.setPrefHeight(60);
-        piercingCannon.setLayoutX(960/2 - 250 + 25);
-        piercingCannon.setLayoutY(540/2-150 + 90);
+        piercingCannon.setLayoutX(960/2 - 400 + 25);
+        piercingCannon.setLayoutY(540/2-150 + 150);
         piercingCannon.setVisible(false);
         piercingCannon.toFront();
         root.getChildren().add(piercingCannon);
 
-        Button volleySpread = new Button("Buy Volley Spread Cannon: 100 Resources");
+        Button volleySpread = new Button("Buy Wall Spread Cannon (Volley Spread Cannon - 5 DMG): 100 Resources");
         volleySpread.setId("menuButton");
-        volleySpread.setPrefWidth(450);
+        volleySpread.setPrefWidth(700);
         volleySpread.setPrefHeight(60);
-        volleySpread.setLayoutX(960/2 - 250 + 25);
-        volleySpread.setLayoutY(540/2-150 + 150);
+        volleySpread.setLayoutX(960/2 - 400 + 25);
+        volleySpread.setLayoutY(540/2-150 + 90);
         volleySpread.setVisible(false);
         volleySpread.toFront();
         root.getChildren().add(volleySpread);
 
-        Button wallTrap = new Button("Buy Wall Trap: 75 Resources");
+        Button wallTrap = new Button("Buy Proximity Trap (Wall Trap - 100 DMG): 75 Resources");
         wallTrap.setId("menuButton");
-        wallTrap.setPrefWidth(450);
+        wallTrap.setPrefWidth(700);
         wallTrap.setPrefHeight(60);
-        wallTrap.setLayoutX(960/2 - 250 + 25);
+        wallTrap.setLayoutX(960/2 - 400 + 25);
         wallTrap.setLayoutY(540/2-150 + 210);
         wallTrap.setVisible(false);
         wallTrap.toFront();
@@ -396,6 +422,7 @@ public class HardSceneController {
         laneRects[4].setOpacity(0.5);
         root.getChildren().add(laneRects[4]);
 
+
         //root.getChildren().add(wallTrap);
         
         Main.stage.getScene().setRoot(root);
@@ -438,6 +465,15 @@ public class HardSceneController {
                 wallTrap.setVisible(true);
                 piercingCannon.setVisible(true);
                 dim.setVisible(true);
+
+                dim.toFront();
+                purchase.toFront();
+                closePurchase.toFront();
+
+                sniperCannon.toFront();
+                volleySpread.toFront();
+                wallTrap.toFront();
+                piercingCannon.toFront();
 
             }
             
@@ -1478,7 +1514,7 @@ public class HardSceneController {
         root.getChildren().add(wallHealth3);
         root.getChildren().add(wallHealth4);
 
-
+        
         
 
 
@@ -1495,7 +1531,10 @@ public class HardSceneController {
         wallHealth3.setProgress(lanes[3].getLaneWall().getCurrentHealth() / (float)lanes[3].getLaneWall().getBaseHealth());
         wallHealth4.setProgress(lanes[4].getLaneWall().getCurrentHealth() / (float)lanes[4].getLaneWall().getBaseHealth());
 
-        
+        for( int i = 0; i<5 ; i++){
+            dangerLevelLabels[i].setText("Danger: " + lanes[i].getDangerLevel());
+            dangerLevelLabels[i].toFront();
+        }
 
         
 
@@ -1593,7 +1632,7 @@ public class HardSceneController {
         backToMainMenu.setPrefWidth(450);
         backToMainMenu.setPrefHeight(60);
         backToMainMenu.setLayoutX(960/2 - 250 + 25);
-        backToMainMenu.setLayoutY(540/2-150 + 150);
+        backToMainMenu.setLayoutY(540/2-150 + 180);
         backToMainMenu.setVisible(true);
         backToMainMenu.toFront();
         root.getChildren().add(backToMainMenu);
@@ -1607,11 +1646,11 @@ public class HardSceneController {
             
         });
 
-        Label gameOverText = new Label("Game Over!");
+        Label gameOverText = new Label("    Game Over! \nYour Score is " + battle.getScore());
         gameOverText.setId("gameOver");
         gameOverText.setPrefWidth(450);
-        gameOverText.setPrefHeight(60);
-        gameOverText.setLayoutX(960/2 - 100);
+        gameOverText.setPrefHeight(120);
+        gameOverText.setLayoutX(960/2 - 150);
         gameOverText.setLayoutY(540/2-125);
         gameOverText.setVisible(true);
         gameOverText.toFront();
@@ -1650,10 +1689,10 @@ public class HardSceneController {
                             image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/ColossalFrames/Colossal.png").toString()));
                             break;
                         case 2:
-                            image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/Abnormal/abnormal.png").toString()));
+                            image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/AnimationFrames/Abnormal/Idle/0.png").toString()));
                             break;
                         default:
-                            image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/AnimationFrames/Abnormal/Idle/0.png").toString()));
+                            image = new ImageView(new Image(new EasySceneController().getClass().getResource("assets/Abnormal/abnormal.png").toString()));
                             break;
                     }
                     
